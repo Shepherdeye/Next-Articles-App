@@ -2,7 +2,10 @@
 const HomePage = () => {
     return (
         <>
-            <h3 className="font-bold  ">this is the home Page</h3>
+            <div className="fix-height">
+                <h3 className="font-bold  ">this is the home Page</h3>
+
+            </div>
         </>
     )
 }

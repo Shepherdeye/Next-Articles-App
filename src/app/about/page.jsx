@@ -1,9 +1,10 @@
-import NavBar from "@/Components/Navbar/Navbar"
 
 const AboutPage = () => {
     return (
         <>
-            <h3>AboutPage</h3>
+            <div className="fix-height">
+                <h3>AboutPage</h3>
+            </div>
         </>
     )
 }

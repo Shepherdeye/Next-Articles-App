@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${noto_Kufi_Arabic.className}`}
+        className={` bg-gray-300 ${noto_Kufi_Arabic.className}`}
       >
         <NavBar />
         {children}
