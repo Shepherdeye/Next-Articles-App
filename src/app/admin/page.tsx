@@ -1,10 +1,10 @@
 
 
 const AdminPage = () => {
-    throw new Error("AdminPageError")
+    // throw new Error("AdminPageError")
     return (
 
-        <div>AdminPage</div>
+        <div className="fix-height">AdminPage</div>
     )
 }
 

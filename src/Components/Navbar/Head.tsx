@@ -27,7 +27,7 @@ const Head = () => {
                 }}
             >
                 <ul className="nav_items">
-                    <Link onClick={() => setToggle(false)} href={"/home"} className="nav_item text-red-700 ">Home</Link>
+                    <Link onClick={() => setToggle(false)} href={"/"} className="nav_item ">Home</Link>
                     <Link onClick={() => setToggle(false)} href={"/about"} className="nav_item">About</Link>
                     <Link onClick={() => setToggle(false)} href={"/articles"} className="nav_item">Articles</Link>
                     <Link onClick={() => setToggle(false)} href={"/admin"} className="nav_item">Admin</Link>

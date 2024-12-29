@@ -1,12 +1,12 @@
 .nav_Container{
     width: 100%;
-    background: #000055eb;
-    color: white;
+    background: #efefef;
    position:relative;
     display: flex;
     justify-content: space-around;
     height: 10vh;
     align-items: center;
+    border-bottom:solid #ddd 2px;
     
 }
 .nav-brand{
@@ -18,7 +18,7 @@
 }
 .navigator {
     text-decoration:none ;
-    color:white;
+   
     font-weight:bold;
 }
 .nav_items {
@@ -32,7 +32,7 @@
 }
 .nav_items a{
     text-decoration:none ;
-    color:white;
+   
     font-weight:bold;
 }
 .resgestration_item_wrapper{
@@ -81,7 +81,7 @@
         background-color: inherit;
         transition: all .5s ease-in;
         z-index: 100;
-        background-color:#000055eb;
+        background-color:#efefef;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     }
 
