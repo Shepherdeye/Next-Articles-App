@@ -1,13 +1,18 @@
 import "./Navbar.css"
-import Head from "./Head.tsx";
+import Headnav from "./Headnav";
+import Link from 'next/link'
 function NavBar() {
     return (
         <>
             <div className="nav_Container">
-                <Head />
+                <Headnav />
                 <div className="resgestration_item_wrapper">
-                    <button>Login</button>
-                    <button>Register</button>
+                    <button >
+                        <Link href={"/login"}>Login</Link>
+                    </button>
+                    <button >
+                        <Link href={"/register"}>Register</Link>
+                    </button>
                 </div>
             </div>
         </>

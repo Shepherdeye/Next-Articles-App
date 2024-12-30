@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { FiCoffee } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
-const Head = () => {
+const Headnav = () => {
     const [toggle, setToggle] = useState(false)
     return (
         <>
@@ -38,4 +38,4 @@ const Head = () => {
     )
 }
 
-export default Head
+export default Headnav
