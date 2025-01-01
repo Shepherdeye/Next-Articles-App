@@ -8,14 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, Zoom } from "react-toastify";
 const noto_Kufi_Arabic = Noto_Kufi_Arabic({ subsets: ["latin"], weight: "400" });
 
-
-
-
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
