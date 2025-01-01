@@ -10,8 +10,8 @@ const Articles = async () => {
         throw new Error('Failed to fetch articles')
     }
     return (
-        <section>
-            <div className="pt-5 w-full gap-7 flex flex-wrap justify-around">
+        <section className='flex justify-center align-center'>
+            <div className="pt-5  w-full gap-7 flex flex-wrap justify-center">
                 {
                     articlesData.map((item) => {
                         return (
