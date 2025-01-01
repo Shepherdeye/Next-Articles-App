@@ -6,7 +6,7 @@ const AdminPage = () => {
     return (
 
         <div className=" w-full">
-            <h3 className=" pl-4 font-semibold text-3xl">Add New Article</h3>
+            <h3 className=" pl-4 font-bold text-2xl">Add New Article</h3>
             <AddArticleForm />
         </div>
     )

@@ -22,7 +22,7 @@ const AddArticleForm = () => {
 
     return (
         <>
-            <form onSubmit={submitHandler} className=' w-full  flex p-5 flex-col  items-center' >
+            <form onSubmit={submitHandler} className=' w-11/12 bg-gray-400 rounded-md mt-5 flex p-5 flex-col  items-center' >
                 <input
 
                     value={title}
@@ -33,6 +33,7 @@ const AddArticleForm = () => {
 
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    rows={10}
                     className='p-3 outline-none   mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
                     placeholder='Enter your description' />
                 <button
