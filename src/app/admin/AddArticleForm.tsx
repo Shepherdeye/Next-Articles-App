@@ -24,7 +24,6 @@ const AddArticleForm = () => {
         <>
             <form onSubmit={submitHandler} className=' w-11/12 bg-gray-400 rounded-md mt-5 flex p-5 flex-col  items-center' >
                 <input
-
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
