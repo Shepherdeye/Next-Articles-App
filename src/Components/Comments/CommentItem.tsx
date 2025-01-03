@@ -2,7 +2,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const CommentItem = () => {
     return (
-        <div className='flex flex-col w-full  bg-gray-200 rounded border-stone-900 shadow-lg  mb-4 p-2'>
+        <div className='flex flex-col w-full  bg-gray-200 rounded border border-stone-900 shadow-lg  mb-4 p-2'>
 
             <div className='flex w-full justify-between '>
                 <strong className='text-gray-900 pl-1 text-1xl font-bold'>Elsayed Mamdouh</strong>

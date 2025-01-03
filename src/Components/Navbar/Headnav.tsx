@@ -10,7 +10,7 @@ const Headnav = () => {
     return (
         <>
             <div className="nav-brand">
-                <Link style={{ display: "flex", alignItems: "center" }} className="navigator" href="/home">FS
+                <Link style={{ display: "flex", alignItems: "center" }} className="navigator" href="/">FS
 
                     <FiCoffee size={"30px"} />
 
