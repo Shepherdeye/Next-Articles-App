@@ -9,10 +9,7 @@ const CommentItem = () => {
                 <small style={{ fontSize: "12px" }} className='pr-1 p-1 rounded-lg text-sm text-green-200 '>2/1/2025</small>
             </div>
             <div className='pl-2 text-sm'>
-                This is the new comment Lorem ipsum dolor'
-                This is the new comment Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quam?
-                sit amet consectetur, adipisicing elit. Eaque, quam?
-                This is the new comment Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quam?
+                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
 
             </div>
             <div className='flex  items-center justify-end cursor-pointer'>
