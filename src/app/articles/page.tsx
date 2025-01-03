@@ -12,7 +12,7 @@ const Articles = async () => {
         throw new Error('Failed to fetch articles')
     }
     return (
-        <section className='flex flex-col justify-center align-center'>
+        <section className='fix-height container m-auto px-5 '>
             <SearchInputComponent />
             <div className="pt-5  w-full gap-7 flex flex-wrap justify-center mb-7">
                 {
