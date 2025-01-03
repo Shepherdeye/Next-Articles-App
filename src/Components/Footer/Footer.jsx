@@ -8,7 +8,7 @@ const Footer = () => {
             style={{ height: '50px' }}
             className='flex items-center justify-center text-white fixed-bottom bg-gray-700 '
         >
-            <p>
+            <p style={{ fontSize: '12px' }}>
                 &copy; {new Date().getFullYear()}  Developed by <strong>Elsayed Eldeeb</strong>. All rights reserved.
             </p>
 

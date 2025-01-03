@@ -6,7 +6,7 @@ import { FaRegComments } from 'react-icons/fa';
 
 const AdminSlidebar = () => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
             <div>
                 <Link className="text-3xl font-bold p-2 flex items-center" href={"/admin"}>
                     <CgMenuGridR />

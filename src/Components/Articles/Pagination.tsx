@@ -6,7 +6,7 @@ import { BsArrowLeftSquareFill } from "react-icons/bs";
 const Pagination = () => {
     return (
         <div className="flex items-center justify-center mt-2 mb-8">
-            <div className="text-gray-900 m-2 py-1 px-3 font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
+            <div className="text-gray-900 m-1 py-1 px-3 font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
                 <BsArrowLeftSquareFill />
             </div>
 
