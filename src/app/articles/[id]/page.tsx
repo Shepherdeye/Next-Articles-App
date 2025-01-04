@@ -6,9 +6,10 @@ import { Article } from "@/utils/types";
 
 interface SinglePageParam {
     params: { id: string };
+
 }
 const SingleArticlePage = async ({ params }: SinglePageParam) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
     const article: Article = await response.json();
     if (!response.ok) {

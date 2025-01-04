@@ -1,11 +1,11 @@
 "use client"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { toast } from "react-toastify";
-
+import { useRouter } from 'next/navigation';
 
 
 const SearchInputComponent = () => {
-
+    const pageRoute = useRouter();
     const [text, setText] = useState("");
     const submitHandler = (e: any) => {
         e.preventDefault();
@@ -13,7 +13,7 @@ const SearchInputComponent = () => {
             toast.error("text is required");
             return;
         }
-        console.log({ "text": text });
+        pageRoute.replace(`/articles/search?searchtext=${text}`)
     }
 
     return (
