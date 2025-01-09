@@ -1,6 +1,8 @@
 import { articles } from "@/utils/data";
 import { UpdateArticleDto } from "@/utils/dtos";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/utils/db";
+
 
 interface SingleArticleProps {
     params: { id: string }
@@ -15,14 +17,17 @@ interface SingleArticleProps {
  * @access Public
  */
 
-export const GET = (request: NextRequest, { params }: SingleArticleProps) => {
+export const GET = async (request: NextRequest, { params }: SingleArticleProps) => {
 
-    const article = articles.find((article) => article.id === parseInt(params.id));
-
-    if (!article) {
-        return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
+    try {
+        const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } })
+        if (!article) {
+            return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
+        }
+        return NextResponse.json(article, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ message: "Error From  server" }, { status: 500 })
     }
-    return NextResponse.json(article, { status: 200 })
 
 }
 
@@ -58,6 +63,7 @@ export const PUT = async (request: NextRequest, { params }: SingleArticleProps) 
  * @desc DELETE SingleArticle
  * @access Public
  */
+// this method to delete
 
 export const DELETE = async (request: NextRequest, { params }: SingleArticleProps) => {
 
