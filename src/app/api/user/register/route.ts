@@ -43,13 +43,14 @@ export async function POST(request: NextRequest) {
                 password: hashedPassword
             },
             select: {
-                isAdmin: true,
+                id: true,
                 name: true,
-                id: true
+                isAdmin: true
             }
         })
+        const token = null;
 
-        return NextResponse.json(newUser, { status: 201 });
+        return NextResponse.json({ ...newUser, token }, { status: 201 });
 
     } catch (error) {
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })
