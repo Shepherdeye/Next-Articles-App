@@ -23,3 +23,13 @@ export const registerSchema = z.object({
         required_error: 'Password is required',
     }).min(6, { message: "Password should be more than 6 characters" }).max(100)
 })
+// this schema for user login
+export const loginSchema = z.object({
+
+    email: z.string({
+        required_error: 'Email is required',
+    }).min(5).max(100).email("invalid email"),
+    password: z.string({
+        required_error: 'Password is required',
+    }).min(6, { message: "Password should be more than 6 characters" }).max(100)
+})

@@ -8,7 +8,7 @@ export default function Home() {
       <br />
       <br />
 
-      <h2 className=" text-3xl font-bold text-center">
+      <h2 className=" text-3xl font-bold text-center text-teal-900">
         Choose Your Web Hosting Plan
       </h2>
       <br />
