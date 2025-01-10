@@ -7,3 +7,8 @@ export interface UpdateArticleDto {
     title?: string;
     description?: string;
 }
+export interface RegisterUserDto {
+    name: string;
+    email: string;
+    password: string
+}
