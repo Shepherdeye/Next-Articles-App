@@ -50,7 +50,7 @@ const RegisterForm = () => {
                 <button
                     className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>
-                    Sign Up
+                    Create Now
                 </button>
             </form>
         </>
