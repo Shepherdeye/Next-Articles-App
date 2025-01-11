@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Invalid Email or Password" }, { status: 400 });
         }
 
-        // make ccompare  by using  bcrypt to  make sure  that 
-        //  is  the same  password  of the encription one  in the  prisam  db
+        // make compare by using bcrypt to make sure  that 
+        //  is the same password of the encription one in the prisam db
         const isPassworMatch = await bcrypt.compare(body.password, user.password);
 
         if (!isPassworMatch) {

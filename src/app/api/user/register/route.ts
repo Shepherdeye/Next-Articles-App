@@ -17,6 +17,7 @@ import { GenerateJWT } from "@/utils/genrateToken";
 
 export async function POST(request: NextRequest) {
     try {
+
         // define  the body from the coming  request
         const body = (await request.json()) as RegisterUserDto;
 
