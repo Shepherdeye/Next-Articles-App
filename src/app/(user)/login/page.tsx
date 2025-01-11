@@ -7,7 +7,7 @@ const LoginPage = () => {
             {/* Page Title and Description */}
             <div className='text-center mb-4'>
                 <h1 className='text-3xl font-bold mb-2 font-sans text-gray-700'>
-                    Access Your Account
+                    Welcome to Login Page
                 </h1>
                 <p className='text-gray-600 text-base md:text-lg font-light'>
                     Access your account to manage your preferences, explore personalized features
