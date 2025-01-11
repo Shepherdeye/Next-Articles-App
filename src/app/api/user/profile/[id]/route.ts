@@ -18,8 +18,8 @@ interface props {
 
 export async function DELETE(request: NextRequest, { params }: props) {
     try {
-        // geting user from prisma db
 
+        // geting user from prisma db
         const user = await prisma.user.findUnique({ where: { id: parseInt(params.id) } });
 
         if (!user) {
@@ -32,7 +32,7 @@ export async function DELETE(request: NextRequest, { params }: props) {
         const authToken = request.headers.get("authToken") as string;
 
         if (!authToken) {
-            return NextResponse.json({ message: "Access Denied ,Not Authorized" },
+            return NextResponse.json({ message: "Not Authorized, Access Denied" },
                 { status: 401 }
             )
         }
@@ -42,15 +42,16 @@ export async function DELETE(request: NextRequest, { params }: props) {
 
         if (user.id === userFromJWt.id) {
 
-
             // delete user 
             await prisma.user.delete({ where: { id: user.id } });
-            return NextResponse.json({ message: "Your Profile Account deleted Successfully" });
+            return NextResponse.json({ message: "Your Profile Account deleted Successfully" }
+                , { status: 200 }
+            );
 
         }
 
         // if there is other user try to delete profile
-        return NextResponse.json({ message: "Only The owner Of The User Can Delete it " },
+        return NextResponse.json({ message: "Forbidden,Only The owner Of The User Can Delete it" },
             { status: 403 }
         )
 
