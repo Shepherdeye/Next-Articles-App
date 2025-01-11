@@ -7,3 +7,9 @@ export type Article = {
     body: string;
 
 }
+export type JwtType = {
+    id: number;
+    name: string;
+    isAdmin: boolean;
+
+}

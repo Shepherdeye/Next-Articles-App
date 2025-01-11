@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs';
-
 import prisma from "@/utils/db";
 import { LoginUserDto } from "@/utils/dtos";
 import { loginSchema } from "@/utils/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
+import { GenerateJWT } from '@/utils/genrateToken';
 
 /**
  * @route /api/user/login
@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
         if (!user) {
             return NextResponse.json({ message: "Invalid Email or Password" }, { status: 400 });
         }
+
         // make ccompare  by using  bcrypt to  make sure  that 
         //  is  the same  password  of the encription one  in the  prisam  db
         const isPassworMatch = await bcrypt.compare(body.password, user.password);
@@ -42,7 +43,14 @@ export async function POST(request: NextRequest) {
         }
 
         // create a  JWT token
-        const token = null;
+
+        const jwtPayload = {
+            id: user.id,
+            name: user.name,
+            isAdmin: user.isAdmin
+        }
+
+        const token = GenerateJWT(jwtPayload);
 
         // if  successfully login 
         return NextResponse.json({ message: "Authenticated .", token }, { status: 200 })

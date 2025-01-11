@@ -1,14 +1,18 @@
 import { FaEdit, FaTrash } from 'react-icons/fa';
-
+import adminImg from "../../../public/facebook-verified.png"
+import Image from 'next/image';
 const CommentItem = () => {
     return (
         <div className='flex flex-col w-full  bg-gray-200 rounded border border-stone-900 shadow-lg  mb-4 p-2'>
 
             <div className='flex w-full justify-between '>
-                <strong className='text-gray-900 pl-1 text-1xl font-bold'>Elsayed Mamdouh</strong>
+                <strong className=' flex text-gray-900 pl-1 text-1xl items-center font-bold'>Elsayed Mamdouh
+                    <span className='flex items-center text-blue-600 text-sm underline ml-1'><Image src={adminImg} width={20} height={20} alt="image admin" /></span></strong>
                 <small style={{ fontSize: "12px" }} className='pr-1 p-1 rounded-lg text-sm text-green-200 '>2/1/2025</small>
             </div>
             <div className='pl-2 text-sm'>
+                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
+                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
                 يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
 
             </div>
