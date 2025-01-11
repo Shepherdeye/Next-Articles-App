@@ -23,7 +23,7 @@ const SearchInputComponent = () => {
                 <input
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    className='p-3  outline-none mb-2 w-3/4 border border-lg border-purple-800 font-semibold text-gray-700 rounded-sm my-auto'
+                    className='p-3  outline-none mb-2 w-full hover:border border-lg border-purple-800 font-semibold text-gray-700 rounded-sm my-auto'
                     type="search" placeholder='Search For Article ' />
 
 
