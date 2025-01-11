@@ -17,8 +17,8 @@ const SearchInputComponent = () => {
     }
 
     return (
-        <>
-            <form onSubmit={submitHandler} className='flex p-5 flex-col items-center' >
+        <div className="w-full flex justify-center">
+            <form onSubmit={submitHandler} className='my-5 w-full md:w-2/3 m-auto bg-gray-300 h-12 rounded' >
 
                 <input
                     value={text}
@@ -28,7 +28,7 @@ const SearchInputComponent = () => {
 
 
             </form>
-        </>
+        </div>
     )
 }
 
