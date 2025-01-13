@@ -12,7 +12,7 @@ export function GenerateJWT(jwtPayload: JwtType): string {
 
 }
 
-// create Coookie by  JWT 
+// create Coookie byJWT 
 
 export function generateCookies(request: JwtType): string {
 

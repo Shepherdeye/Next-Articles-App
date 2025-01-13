@@ -1,8 +1,9 @@
 import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyToken } from "@/utils/verfyJwt";
 import jwt from "jsonwebtoken"
 import { JwtType } from "@/utils/types";
-import { verifyToken } from "@/utils/verfyJwt";
+import { headers } from "next/headers";
 
 
 interface props {
@@ -35,7 +36,7 @@ export async function DELETE(request: NextRequest, { params }: props) {
 
         if (userFromJWt != null && user.id === userFromJWt.id) {
 
-            // delete user 
+            // delete user
             await prisma.user.delete({ where: { id: user.id } });
             return NextResponse.json({ message: "Your Profile Account deleted Successfully" }
                 , { status: 200 }
@@ -56,3 +57,5 @@ export async function DELETE(request: NextRequest, { params }: props) {
         )
     }
 }
+
+

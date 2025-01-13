@@ -19,18 +19,17 @@ export async function POST(request: NextRequest) {
 
         const body = await request.json() as LoginUserDto;
 
-        // make the validation  to the request
-
+        // make the validation to the request
         const validation = loginSchema.safeParse(body);
 
         if (!validation.success) {
-            return NextResponse.json({ message: validation.error.errors[0].message }, { status: 400 });
+            return NextResponse.json(
+                { message: validation.error.errors[0].message },
+                { status: 400 }
+            );
         }
 
-
-
         // get the same email from the prisma db
-
         const user = await prisma.user.findUnique({ where: { email: body.email } });
         if (!user) {
             return NextResponse.json({ message: "Invalid Email or Password" }, { status: 400 });
@@ -45,14 +44,13 @@ export async function POST(request: NextRequest) {
         }
 
         // create a  JWT token
-
         const jwtPayload = {
             id: user.id,
             name: user.name,
             isAdmin: user.isAdmin
         }
 
-        // create a function in exteernal file by using the function that generate JWT
+        // create a function in external file by using the function that generate JWT
         const cookie = generateCookies(jwtPayload)
 
         // if  successfully login 
