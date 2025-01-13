@@ -29,6 +29,7 @@ export function GET(request: NextRequest) {
     // }
 
     try {
+
         const response = NextResponse.json(
             { message: "Logout Successfully" },
             { status: 200 }
