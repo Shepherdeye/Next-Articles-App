@@ -3,7 +3,8 @@ import { RegisterUserDto } from "@/utils/dtos"
 import { registerSchema } from "@/utils/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
-import { GenerateJWT } from "@/utils/genrateToken";
+import { generateCookies } from "@/utils/genrateToken";
+
 
 
 /**
@@ -34,7 +35,6 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: " Warning... this User Already Registered" }, { status: 400 })
         }
 
-
         // make  the  password  incryption
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(body.password, salt);
@@ -52,16 +52,24 @@ export async function POST(request: NextRequest) {
             }
         })
 
-
         // create JWT
         const jwtPayload = {
             id: newUser.id,
             name: newUser.name,
             isAdmin: newUser.isAdmin
         }
-        const token = GenerateJWT(jwtPayload);
 
-        return NextResponse.json({ ...newUser, token }, { status: 201 });
+        // create a function in exteernal file by using the function that generate JWT
+        const cookie = generateCookies(jwtPayload);
+
+        return NextResponse.json({ ...newUser, message: "Rgistered " },
+
+            {
+                status: 201,
+                headers: {
+                    "Set-Cookie": cookie
+                }
+            });
 
     } catch (error) {
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })

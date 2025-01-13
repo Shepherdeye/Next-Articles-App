@@ -2,10 +2,12 @@ import { NextResponse, NextRequest } from "next/server"
 
 
 export function middleware(request: NextRequest) {
-    const authToken = request.headers.get("authToken") as string;
+    const authToken = request.cookies.get("jwtToken");
+    const jwtToken = authToken?.value as string;
 
-    if (!authToken) {
-        return NextResponse.json({ message: "Not Authorized, Access Denied,From Middleware" },
+    if (!jwtToken) {
+        return NextResponse.json(
+            { message: "Not Authorized, Access Denied,From Middleware" },
             { status: 401 }
         )
     }

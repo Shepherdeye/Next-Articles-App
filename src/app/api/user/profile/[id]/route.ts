@@ -2,6 +2,7 @@ import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken"
 import { JwtType } from "@/utils/types";
+import { verifyToken } from "@/utils/verfyJwt";
 
 
 interface props {
@@ -28,19 +29,11 @@ export async function DELETE(request: NextRequest, { params }: props) {
             )
         }
 
-        //get JWT and  check if the JWT  exist or Not 
-        const authToken = request.headers.get("authToken") as string;
-
-        if (!authToken) {
-            return NextResponse.json({ message: "Not Authorized, Access Denied" },
-                { status: 401 }
-            )
-        }
 
         // verify JWT token to know  the user info
-        const userFromJWt = jwt.verify(authToken, process.env.SECRET_KEY as string) as JwtType;
+        const userFromJWt = verifyToken(request);
 
-        if (user.id === userFromJWt.id) {
+        if (userFromJWt != null && user.id === userFromJWt.id) {
 
             // delete user 
             await prisma.user.delete({ where: { id: user.id } });

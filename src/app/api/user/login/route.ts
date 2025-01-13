@@ -3,7 +3,8 @@ import prisma from "@/utils/db";
 import { LoginUserDto } from "@/utils/dtos";
 import { loginSchema } from "@/utils/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
-import { GenerateJWT } from '@/utils/genrateToken';
+import { generateCookies } from '@/utils/genrateToken';
+import { serialize } from "cookie"
 
 /**
  * @route /api/user/login
@@ -25,6 +26,7 @@ export async function POST(request: NextRequest) {
         if (!validation.success) {
             return NextResponse.json({ message: validation.error.errors[0].message }, { status: 400 });
         }
+
 
 
         // get the same email from the prisma db
@@ -50,10 +52,17 @@ export async function POST(request: NextRequest) {
             isAdmin: user.isAdmin
         }
 
-        const token = GenerateJWT(jwtPayload);
+        // create a function in exteernal file by using the function that generate JWT
+        const cookie = generateCookies(jwtPayload)
 
         // if  successfully login 
-        return NextResponse.json({ message: "Authenticated .", token }, { status: 200 })
+        return NextResponse.json({ message: "Authenticated ." },
+            {
+                status: 200,
+                headers: {
+                    "Set-Cookie": cookie
+                }
+            })
     }
     catch (error) {
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })

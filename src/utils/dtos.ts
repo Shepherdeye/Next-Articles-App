@@ -13,7 +13,6 @@ export interface RegisterUserDto {
     password: string
 }
 export interface LoginUserDto {
-
     email: string;
     password: string
 }
