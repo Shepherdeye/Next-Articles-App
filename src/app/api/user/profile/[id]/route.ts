@@ -164,10 +164,25 @@ export async function PUT(request: NextRequest, { params }: props) {
                 name: body.name,
                 email: body.email,
                 password: body.password
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                createdAt: true,
+                updatedAt: true
             }
         })
         // return the updated user
-        return NextResponse.json(updatedUser, { status: 200 })
+
+        // we can  use this or the select that in prisma and pass the ...other in the respone instead of the updatedUser
+        // const { password, ...other } = updatedUser;
+
+
+        return NextResponse.json(
+            { ...updatedUser, message: "Updated successfully" },
+            { status: 200 }
+        )
 
 
 
