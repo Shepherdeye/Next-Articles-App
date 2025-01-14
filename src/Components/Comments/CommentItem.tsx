@@ -7,7 +7,7 @@ const CommentItem = () => {
 
             <div className='flex w-full justify-between '>
                 <strong className=' flex text-gray-900 pl-1 text-1xl items-center font-bold'>Elsayed Mamdouh
-                    <span className='flex items-center text-blue-600 text-sm underline ml-1'><Image src={adminImg} width={20} height={20} alt="image admin" /></span></strong>
+                    <span className='flex items-center text-blue-600 text-sm underline ml-1'>WS Admin <Image src={adminImg} width={20} height={20} alt="image admin" /></span></strong>
                 <small style={{ fontSize: "12px" }} className='pr-1 p-1 rounded-lg text-sm text-green-200 '>2/1/2025</small>
             </div>
             <div className='pl-2 text-sm'>
