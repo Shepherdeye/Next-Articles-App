@@ -37,7 +37,9 @@ export function GET(request: NextRequest) {
 
         // just  remove the  cookies
         response.cookies.delete("jwtToken");
+
         return response
+
     } catch (error) {
 
     }

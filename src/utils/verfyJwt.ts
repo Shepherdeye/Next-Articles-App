@@ -21,7 +21,6 @@ import { JwtType } from './types';
 export function verifyToken(request: NextRequest): JwtType | null {
     try {
 
-
         const jwtTokenPath = request.cookies.get("jwtToken");
 
         const token = jwtTokenPath?.value as string;
