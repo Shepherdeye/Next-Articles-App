@@ -1,6 +1,8 @@
+import bcrypt from 'bcryptjs';
 import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/utils/verfyJwt";
+import { UpdatUserDto } from "@/utils/dtos";
 
 
 
@@ -137,10 +139,39 @@ export async function PUT(request: NextRequest, { params }: props) {
                 { status: 404 }
             )
         }
+        // verfiy the user data from JWT 
+        const userFromJWt = verifyToken(request);
+        //  check  if the userFromJWT has the same data of the user in the Prisma DB
 
-    }
+        if (userFromJWt == null || userFromJWt.id != user.id) {
+            return NextResponse.json(
+                { message: "you are not allowed,Forbiden,access denied" },
+                { status: 403 }
+            )
+        }
+        // take the data that need to update from the request body
+        const body = await request.json() as UpdatUserDto;
 
-    catch (error) {
+        // make condition if the body have a password we need to coded it
+        if (body.password) {
+            const salt = await bcrypt.genSalt(10);
+            body.password = await bcrypt.hash(body.password, salt)
+        }
+        // now we need to add the new values of the user profile
+        const updatedUser = await prisma.user.update({
+            where: { id: parseInt(params.id) },
+            data: {
+                name: body.name,
+                email: body.email,
+                password: body.password
+            }
+        })
+        // return the updated user
+        return NextResponse.json(updatedUser, { status: 200 })
+
+
+
+    } catch (error) {
         return NextResponse.json(
             { message: "Internal Server Error" },
             { status: 500 }
