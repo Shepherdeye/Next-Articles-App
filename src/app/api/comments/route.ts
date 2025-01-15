@@ -10,7 +10,6 @@ import { NextRequest, NextResponse } from "next/server"
  * @path api/comments
  * @description create new comment
  * @access  private
- * 
  */
 export async function POST(request: NextRequest) {
     try {
@@ -50,6 +49,48 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             { message: "Internal Server Error" },
             { status: 500 }
+        )
+    }
+}
+
+/**
+ * @method GET
+ * @path api/comments
+ * @description Get all comments
+ * @access  private {only admin}
+ */
+
+export async function GET(request: NextRequest) {
+    try {
+        // make sure that is the JWt found
+        const user = verifyToken(request);
+        // check if the user Login
+        if (!user) {
+            return NextResponse.json(
+                { message: "Please Login,Access denied" },
+                { status: 401 }
+            )
+        }
+        // check if not admin
+        if (user.isAdmin === false) {
+            return NextResponse.json(
+                { message: "Only Admins,Access denied" },
+                { status: 403 }
+            )
+        }
+        //  get all comments from prisma db
+        const comments = await prisma.comment.findMany();
+
+        return NextResponse.json(
+            comments,
+            { status: 200 }
+        )
+
+    } catch (error) {
+        return NextResponse.json(
+            { message: "internal server Error" },
+            { status: 500 }
+
         )
     }
 }
