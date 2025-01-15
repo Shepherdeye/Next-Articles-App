@@ -33,3 +33,15 @@ export const loginSchema = z.object({
         required_error: 'Password is required',
     }).min(6, { message: "Password should be more than 6 characters" }).max(100)
 })
+// create comments schema
+
+export const commentSchema = z.object(
+    {
+        text: z.string(
+            {
+                required_error: 'Comment is required',
+            }
+        ).min(2, "At least enter two character in the comment"),
+        articleId: z.number()
+    }
+)
