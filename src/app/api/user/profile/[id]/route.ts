@@ -154,6 +154,13 @@ export async function PUT(request: NextRequest, { params }: props) {
 
         // make condition if the body have a password we need to coded it
         if (body.password) {
+            // make other condition to  insure that the character not less than 6
+            if (body.password.length < 6) {
+                return NextResponse.json(
+                    { message: "Password must be at least 6 characters" },
+                    { status: 400 }
+                )
+            }
             const salt = await bcrypt.genSalt(10);
             body.password = await bcrypt.hash(body.password, salt)
         }
