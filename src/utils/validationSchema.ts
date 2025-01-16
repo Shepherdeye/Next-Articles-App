@@ -45,3 +45,13 @@ export const commentSchema = z.object(
         articleId: z.number()
     }
 )
+export const commentUpdateSchema = z.object(
+    {
+        text: z.string(
+            {
+                required_error: 'Comment is required',
+            }
+        ).min(2, "At least enter two character in the comment"),
+
+    }
+)
