@@ -13,9 +13,10 @@ interface props {
 /**
  * @method PUT
  * @path api/comments
- * @description Update  comments
- * @access  public {any loggin user}
+ * @description Update  comment
+ * @access  private {owner/Creater user}
  */
+
 export async function PUT(request: NextRequest, { params }: props) {
 
     try {
@@ -43,8 +44,9 @@ export async function PUT(request: NextRequest, { params }: props) {
                 { status: 403 }
             )
         }
-        // update the comment
+        // validate the comment body
         const body = await request.json() as UpdateCommentDto;
+
         const validation = commentUpdateSchema.safeParse(body);
         if (!validation.success) {
             return NextResponse.json(
@@ -56,7 +58,6 @@ export async function PUT(request: NextRequest, { params }: props) {
         const updatedComment = await prisma.comment.update(
             {
                 where: { id: parseInt(params.id) },
-
                 data: {
                     text: body.text
                 }
@@ -77,3 +78,11 @@ export async function PUT(request: NextRequest, { params }: props) {
         )
     }
 }
+
+
+/**
+ * @method DELETE
+ * @path api/comments
+ * @description Delete  comment
+ * @access  private {owner/Creater user /admin}
+ */
