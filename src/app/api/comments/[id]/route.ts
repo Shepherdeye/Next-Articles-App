@@ -20,6 +20,8 @@ interface props {
 export async function PUT(request: NextRequest, { params }: props) {
 
     try {
+
+
         // define the comment 
         const comment = await prisma.comment.findUnique({ where: { id: parseInt(params.id) } });
         // check if find  the comment or not
@@ -86,3 +88,48 @@ export async function PUT(request: NextRequest, { params }: props) {
  * @description Delete  comment
  * @access  private {owner/Creater user /admin}
  */
+
+export async function DELETE(request: NextRequest, { params }: props) {
+    try {
+
+        // define the comment 
+        const comment = await prisma.comment.findUnique({ where: { id: parseInt(params.id) } });
+        // check if find  the comment or not
+        if (!comment) {
+            return NextResponse.json(
+                { message: "Comment Not Found" },
+                { status: 404 }
+            )
+        }
+
+        // verfiy to know if the user login or not
+        const user = verifyToken(request);
+        if (user == null || !user) {
+            return NextResponse.json(
+                { message: "No Token Provided ,Access denied" },
+                { status: 401 }
+            )
+        }
+
+        // check if the comment belong to the login user or not
+        if (comment.userId === user.id || user.isAdmin == true) {
+            // delete comment
+            await prisma.comment.delete({ where: { id: parseInt(params.id) } });
+            return NextResponse.json(
+                { message: "Comment Deleted Successfully" },
+                { status: 200 }
+            )
+        }
+
+        return NextResponse.json(
+            { message: "only Comment Creater or Admin Can Delete It ,Forbidden" },
+            { status: 403 }
+        )
+
+    } catch (error) {
+        return NextResponse.json(
+            { message: "internal server Error" },
+            { status: 500 }
+        )
+    }
+}
