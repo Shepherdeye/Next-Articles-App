@@ -1,5 +1,6 @@
 import prisma from "@/utils/db"
 import { UpdateCommentDto } from "@/utils/dtos";
+import { commentUpdateSchema } from "@/utils/validationSchema";
 import { verifyToken } from "@/utils/verfyJwt";
 import { NextRequest, NextResponse } from "next/server"
 
@@ -44,8 +45,30 @@ export async function PUT(request: NextRequest, { params }: props) {
         }
         // update the comment
         const body = await request.json() as UpdateCommentDto;
+        const validation = commentUpdateSchema.safeParse(body);
+        if (!validation.success) {
+            return NextResponse.json(
+                { message: validation.error.errors[0].message },
+                { status: 400 }
+            )
+        }
+        // update the comment
+        const updatedComment = await prisma.comment.update(
+            {
+                where: { id: parseInt(params.id) },
 
+                data: {
+                    text: body.text
+                }
+            }
 
+        )
+        // return the updated comment
+        return NextResponse.json(
+
+            { updatedComment, message: "Comment Updated Successfully" },
+            { status: 200 }
+        )
 
     } catch (error) {
         return NextResponse.json(
