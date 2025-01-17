@@ -8,7 +8,6 @@ const CommentItem = () => {
             <div className='flex w-full justify-between '>
                 <strong className=' flex text-gray-900 pl-1 text-1xl items-center font-bold'>Elsayed Mamdouh
                     <span className='flex items-center text-blue-600 text-sm underline ml-1'>WS Admin <Image src={adminImg} width={20} height={20} alt="image admin" /></span></strong>
-                <small style={{ fontSize: "12px" }} className='pr-1 p-1 rounded-lg text-sm text-green-200 '>2/1/2025</small>
             </div>
             <div className='pl-2 text-sm'>
                 يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
@@ -16,12 +15,19 @@ const CommentItem = () => {
                 يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
 
             </div>
-            <div className='flex  items-center justify-end cursor-pointer'>
-                <div className='p-1 text-yellow-500 '>
-                    <FaEdit />
+            <div className='flex justify-between items-center mt-2 '>
+                <div>
+                    <small style={{ fontSize: "11px", opacity: ".5" }} className=' ml-1 rounded-sm text-sm font-semibold'>2/1/2025</small>
+
                 </div>
-                <div className='p-1 text-red-500 '>
-                    <FaTrash />
+
+                <div className='flex  items-center justify-end cursor-pointer'>
+                    <div className='p-1 text-yellow-500 '>
+                        <FaEdit />
+                    </div>
+                    <div className='p-1 text-red-500 '>
+                        <FaTrash />
+                    </div>
                 </div>
             </div>
         </div>
