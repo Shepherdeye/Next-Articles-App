@@ -21,7 +21,7 @@ export function generateCookies(request: JwtType): string {
         httpOnly: true,
         sameSite: "strict",
         secure: process.env.NODE_ENV === "production",
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: 60 * 60 * 24 * 30,
         path: "/"
     })
     return cookie

@@ -1,6 +1,7 @@
 import { UpdateArticleDto } from "@/utils/dtos";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/db";
+import { verifyToken } from "@/utils/verfyJwt";
 
 
 interface SingleArticleProps {
@@ -42,6 +43,15 @@ export const GET = async (request: NextRequest, { params }: SingleArticleProps) 
 export const PUT = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
+
+        // verfy first to know if the user was admin or not
+        const user = verifyToken(request);
+        if (user == null || !user.isAdmin) {
+            return NextResponse.json(
+                { message: "only admin can update article,forbidden" },
+                { status: 403 }
+            )
+        }
         const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } });
 
         if (!article) {
@@ -81,6 +91,15 @@ export const PUT = async (request: NextRequest, { params }: SingleArticleProps) 
 export const DELETE = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
+
+        // verfy first to know if the user was admin or not
+        const user = verifyToken(request);
+        if (user == null || !user.isAdmin) {
+            return NextResponse.json(
+                { message: "only admin can delete article,forbidden" },
+                { status: 403 }
+            )
+        }
         const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } })
         if (!article) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })

@@ -3,6 +3,7 @@ import { CreateArticleDto } from "@/utils/dtos";
 import { schemaValidation } from "@/utils/validationSchema";
 import { Article } from "@prisma/client";
 import prisma from "@/utils/db";
+import { verifyToken } from "@/utils/verfyJwt";
 
 /**
  * 
@@ -28,7 +29,7 @@ export const GET = async (request: NextRequest) => {
  * @method POST 
  * @route ~/api/articles
  * @desc Create New articles
- * @access Public
+ * @access private (only admin)
  */
 
 // Dto is  the  short hand of => 'data transfer object'
@@ -37,6 +38,16 @@ export const GET = async (request: NextRequest) => {
 export const POST = async (request: NextRequest) => {
 
     try {
+
+        // verfy first to know if the user was admin or not
+        const user = verifyToken(request);
+        if (user == null || !user.isAdmin) {
+            return NextResponse.json(
+                { message: "only admin can create article,forbidden" },
+                { status: 403 }
+            )
+        }
+
         const body = (await request.json()) as CreateArticleDto;
 
         const validation = schemaValidation.safeParse(body);

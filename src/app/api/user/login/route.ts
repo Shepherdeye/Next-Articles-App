@@ -4,7 +4,6 @@ import { LoginUserDto } from "@/utils/dtos";
 import { loginSchema } from "@/utils/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import { generateCookies } from '@/utils/genrateToken';
-import { serialize } from "cookie"
 
 /**
  * @route /api/user/login
