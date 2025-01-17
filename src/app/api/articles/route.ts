@@ -23,12 +23,12 @@ export const GET = async (request: NextRequest) => {
             take: ARTICLE_NUMBER_COUNT,
         });
         // هنا انا عامل شرط هيتعدل  في  المستقبل
-        // if (articles.length < 1) {
-        //     return NextResponse.json({
-        //         message: "Article not found"
-        //     }, { status: 400 });
+        if (articles.length < 1) {
+            return NextResponse.json({
+                message: "Article not found"
+            }, { status: 400 });
 
-        // }
+        }
         return NextResponse.json(articles, { status: 200 });
 
     } catch (error) {
