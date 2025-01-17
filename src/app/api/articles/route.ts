@@ -17,10 +17,11 @@ export const GET = async (request: NextRequest) => {
 
     try {
         const pageNumber = request.nextUrl.searchParams.get("pageNumber") || "1";
-        const ARTICLE_NUMBER_COUNT = 6;
+        // NUMBER OF THE ARTICLES THAT I NEED TO  DISPLAY
+        const ARTICLE_PER_PAGE = 6;
         const articles = await prisma.article.findMany({
-            skip: ARTICLE_NUMBER_COUNT * ((parseInt(pageNumber)) - 1),
-            take: ARTICLE_NUMBER_COUNT,
+            skip: ARTICLE_PER_PAGE * ((parseInt(pageNumber)) - 1),
+            take: ARTICLE_PER_PAGE,
         });
         // هنا انا عامل شرط هيتعدل  في  المستقبل
         if (articles.length < 1) {
