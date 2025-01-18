@@ -29,7 +29,7 @@ const Headnav = () => {
                 <ul className="nav_items">
                     <Link onClick={() => setToggle(false)} href={"/"} className="nav_item ">Home</Link>
                     <Link onClick={() => setToggle(false)} href={"/about"} className="nav_item">About</Link>
-                    <Link onClick={() => setToggle(false)} href={"/articles"} className="nav_item">Articles</Link>
+                    <Link onClick={() => setToggle(false)} href={"/articles?pageNumber=1"} className="nav_item">Articles</Link>
                     <Link onClick={() => setToggle(false)} href={"/admin"} className="nav_item">Admin</Link>
                 </ul>
             </div>

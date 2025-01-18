@@ -1,12 +1,17 @@
 
 import SearchInputComponent from '@/Components/Articles/SearchInputComponent';
 import ArticleItem from './ArticleItem';
-import { Article } from "@/utils/types"
+import { Article } from "@prisma/client"
 import Pagination from '@/Components/Articles/Pagination';
 
-const Articles = async () => {
+interface PageNumberProps {
+    searchParams: { pageNumber: string }
+}
 
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+const Articles = async ({ searchParams }: PageNumberProps) => {
+    const { pageNumber } = searchParams;
+    const response = await fetch(`http://localhost:3000/api/articles?pageNumber=${pageNumber}`);
     const articlesData: Article[] = await response.json();
     if (!response.ok) {
         throw new Error('Failed to fetch articles')
