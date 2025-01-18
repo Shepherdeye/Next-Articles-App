@@ -116,14 +116,26 @@ export const DELETE = async (request: NextRequest, { params }: SingleArticleProp
                 { status: 403 }
             )
         }
-        const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } })
+        // geting the article with the belongs comments
+        const article = await prisma.article.findUnique({
+            where: { id: parseInt(params.id) },
+            include: { comments: true }
+
+        })
+
         if (!article) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
         }
 
         //request to delete
+        await prisma.article.delete({ where: { id: parseInt(params.id) } });
 
-        await prisma.article.delete({ where: { id: parseInt(params.id) } })
+        // geting the articles ids to pass it to delete
+        const commentIds: number[] = article?.comments.map((comment) => comment.id);
+        // deleting also the comments that belong to the article
+        await prisma.comment.deleteMany({
+            where: { id: { in: commentIds } }
+        })
 
         return NextResponse.json({ message: "Article Deleted" }, { status: 200 })
 

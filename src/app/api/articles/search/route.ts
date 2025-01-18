@@ -15,6 +15,7 @@ export async function GET(request: NextRequest) {
     try {
         const searchText = request.nextUrl.searchParams.get("searchText");
         let articles;
+
         // handle if return  values 
         if (searchText) {
             articles = await prisma.article.findMany(
@@ -32,6 +33,7 @@ export async function GET(request: NextRequest) {
                 { status: 200 }
             )
         }
+
         // handle  if  it return  null
         else {
             articles = await prisma.article.findMany({
@@ -43,6 +45,7 @@ export async function GET(request: NextRequest) {
                 { status: 200 }
             )
         }
+
 
     } catch (error) {
         return NextResponse.json(
