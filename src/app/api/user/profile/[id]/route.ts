@@ -3,6 +3,7 @@ import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/utils/verfyJwt";
 import { UpdatUserDto } from "@/utils/dtos";
+import { updateProfileSchema } from '@/utils/validationSchema';
 
 
 
@@ -165,18 +166,21 @@ export async function PUT(request: NextRequest, { params }: props) {
         // take the data that need to update from the request body
         const body = await request.json() as UpdatUserDto;
 
+        // make validation
+        const validation = updateProfileSchema.safeParse(body);
+        if (!validation.success) {
+            return NextResponse.json(
+                { message: validation.error.errors[0].message },
+                { status: 400 }
+            )
+        }
+
         // make condition if the body have a password we need to coded it
         if (body.password) {
-            // make other condition to  insure that the character not less than 6
-            if (body.password.length < 6) {
-                return NextResponse.json(
-                    { message: "Password must be at least 6 characters" },
-                    { status: 400 }
-                )
-            }
             const salt = await bcrypt.genSalt(10);
             body.password = await bcrypt.hash(body.password, salt)
         }
+
         // now we need to add the new values of the user profile
         const updatedUser = await prisma.user.update({
             where: { id: parseInt(params.id) },

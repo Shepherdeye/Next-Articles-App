@@ -55,3 +55,15 @@ export const commentUpdateSchema = z.object(
 
     }
 )
+
+// update user profile schema
+export const updateProfileSchema = z.object({
+    name: z.string({
+        required_error: 'Name is required',
+        invalid_type_error: "the value should be string"
+    }).min(2).max(100).optional(),
+    email: z.string().min(5).max(100).email("invalid email").optional(),
+    password: z.string({
+        required_error: 'Password is required',
+    }).min(6, { message: "Password should be more than 6 characters" }).max(100).optional()
+})
