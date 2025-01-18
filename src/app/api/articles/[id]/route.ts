@@ -20,7 +20,23 @@ interface SingleArticleProps {
 export const GET = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
-        const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } })
+        const article = await prisma.article.findUnique({
+            where: { id: parseInt(params.id) },
+            include: {
+                comments: {
+                    include: {
+                        user: {
+                            select: {
+                                name: true
+                            }
+                        }
+                    },
+                    orderBy: {
+                        createdAt: "asc"
+                    }
+                }
+            }
+        })
         if (!article) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
         }
