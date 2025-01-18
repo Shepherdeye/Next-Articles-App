@@ -14,7 +14,6 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: NextRequest) {
     try {
         const searchText = request.nextUrl.searchParams.get("searchText");
-
         let articles;
         // handle if return  values 
         if (searchText) {
@@ -32,11 +31,9 @@ export async function GET(request: NextRequest) {
                 articles,
                 { status: 200 }
             )
-
         }
         // handle  if  it return  null
         else {
-
             articles = await prisma.article.findMany({
                 take: 6
             })
@@ -47,11 +44,10 @@ export async function GET(request: NextRequest) {
             )
         }
 
-
-
     } catch (error) {
         return NextResponse.json(
-            { message: "Internal Server Errorw" }
+            { message: "Internal Server Error" },
+            { status: 500 }
         )
 
     }
