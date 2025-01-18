@@ -4,7 +4,7 @@ import { schemaValidation } from "@/utils/validationSchema";
 import { Article } from "@prisma/client";
 import prisma from "@/utils/db";
 import { verifyToken } from "@/utils/verfyJwt";
-
+import { ARTICLE_PER_PAGE } from "@/utils/constants"
 /**
  * 
  * @method GET 
@@ -17,19 +17,12 @@ export const GET = async (request: NextRequest) => {
 
     try {
         const pageNumber = request.nextUrl.searchParams.get("pageNumber") || "1";
-        // NUMBER OF THE ARTICLES THAT I NEED TO  DISPLAY
-        const ARTICLE_PER_PAGE = 6;
+
         const articles = await prisma.article.findMany({
             skip: ARTICLE_PER_PAGE * ((parseInt(pageNumber)) - 1),
             take: ARTICLE_PER_PAGE,
         });
-        // هنا انا عامل شرط هيتعدل  في  المستقبل
-        if (articles.length < 1) {
-            return NextResponse.json({
-                message: "Article not found"
-            }, { status: 400 });
 
-        }
 
         return NextResponse.json(articles, { status: 200 });
 
