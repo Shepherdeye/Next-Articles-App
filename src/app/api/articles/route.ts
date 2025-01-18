@@ -30,6 +30,7 @@ export const GET = async (request: NextRequest) => {
             }, { status: 400 });
 
         }
+
         return NextResponse.json(articles, { status: 200 });
 
     } catch (error) {

@@ -22,7 +22,10 @@ export async function DELETE(request: NextRequest, { params }: props) {
     try {
 
         // geting user from prisma db
-        const user = await prisma.user.findUnique({ where: { id: parseInt(params.id) } });
+        const user = await prisma.user.findUnique({
+            where: { id: parseInt(params.id) },
+            include: { comments: true }
+        });
 
         if (!user) {
             return NextResponse.json({ message: "Account Not found" },
@@ -38,6 +41,16 @@ export async function DELETE(request: NextRequest, { params }: props) {
 
             // delete user
             await prisma.user.delete({ where: { id: user.id } });
+
+            // gettig  comments ids  that belong to the user
+            const commentsIds: number[] = user?.comments.map((comment) => comment.id);
+
+            // deleting comment that related to user
+            await prisma.comment.deleteMany({
+                where: { id: { in: commentsIds } }
+            })
+
+            // return user message after delete  the user and the related comments
             return NextResponse.json({ message: "Your Profile Account deleted Successfully" }
                 , { status: 200 }
             );

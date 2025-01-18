@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
             )
         }
 
-        // handle  if  it return  null
+        // handle if it return null
         else {
             articles = await prisma.article.findMany({
                 take: 6
