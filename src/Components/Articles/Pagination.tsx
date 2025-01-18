@@ -3,7 +3,13 @@ const paginationArray = [1, 2, 3, 4, 5];
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { BsArrowLeftSquareFill } from "react-icons/bs";
 
-const Pagination = () => {
+interface PaginationProps {
+    pages: number;
+    pageNumber: number;
+    path: string
+}
+
+const Pagination = ({ pages, pageNumber, path }: PaginationProps) => {
     return (
         <div className="flex items-center justify-center mt-2 mb-8">
             <div className="text-gray-900 m-1 py-1 px-3 font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">

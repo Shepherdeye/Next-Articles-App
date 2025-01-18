@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     try {
         const count = await prisma.article.count();
         return NextResponse.json(
-            count,
+            { count },
             { status: 200 }
         )
     } catch (error) {

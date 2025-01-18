@@ -2,7 +2,8 @@
 import SearchInputComponent from '@/Components/Articles/SearchInputComponent';
 import ArticleItem from './ArticleItem';
 import Pagination from '@/Components/Articles/Pagination';
-import { getArticles } from '@/apiCalls/ArticleApiCalls';
+import { getArticles, getArticlesCount } from '@/apiCalls/ArticleApiCalls';
+import { ARTICLE_PER_PAGE } from '@/utils/constants';
 
 interface PageNumberProps {
     searchParams: { pageNumber: string }
@@ -14,7 +15,14 @@ interface PageNumberProps {
 const Articles = async ({ searchParams }: PageNumberProps) => {
     const { pageNumber } = searchParams;
 
+    // use function  from the apicalls folder
     const articlesData = await getArticles(pageNumber);
+
+    // get the Article count
+    const articlesCount = await getArticlesCount();
+    // get the Page count 
+    const pagesCount = Math.ceil(articlesCount / ARTICLE_PER_PAGE);
+
     return (
         <section className='fix-height container m-auto px-5 '>
             <SearchInputComponent />
@@ -27,7 +35,7 @@ const Articles = async ({ searchParams }: PageNumberProps) => {
                     })
                 }
             </div>
-            <Pagination />
+            <Pagination pages={pagesCount} pageNumber={parseInt(pageNumber)} path="articles/" />
         </section>
     )
 }
