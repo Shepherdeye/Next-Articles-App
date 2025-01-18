@@ -14,13 +14,12 @@ interface PageNumberProps {
 
 const Articles = async ({ searchParams }: PageNumberProps) => {
     const { pageNumber } = searchParams;
-
     // use function  from the apicalls folder
     const articlesData = await getArticles(pageNumber);
 
     // get the Article count
     const articlesCount = await getArticlesCount();
-    // get the Page count 
+    // get the Page count // this  ARTICLE_PER_PAGE is  a  var from other page 
     const pagesCount = Math.ceil(articlesCount / ARTICLE_PER_PAGE);
 
     return (
@@ -28,7 +27,7 @@ const Articles = async ({ searchParams }: PageNumberProps) => {
             <SearchInputComponent />
             <div className="pt-5  w-full gap-7 flex flex-wrap justify-center mb-7">
                 {
-                    articlesData.slice(0, 6).map((item) => {
+                    articlesData.map((item) => {
                         return (
                             <ArticleItem key={item.id} article={item} />
                         )
