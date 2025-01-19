@@ -13,7 +13,7 @@ const SearchInputComponent = () => {
             toast.error("text is required");
             return;
         }
-        pageRoute.replace(`/articles/search?searchtext=${text}`)
+        pageRoute.replace(`/articles/search?searchText=${text}`)
     }
 
     return (

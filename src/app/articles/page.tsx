@@ -4,6 +4,7 @@ import ArticleItem from './ArticleItem';
 import Pagination from '@/Components/Articles/Pagination';
 import { getArticles, getArticlesCount } from '@/apiCalls/ArticleApiCalls';
 import { ARTICLE_PER_PAGE } from '@/utils/constants';
+import { Article } from "@prisma/client"
 
 interface PageNumberProps {
     searchParams: { pageNumber: string }
@@ -15,7 +16,7 @@ interface PageNumberProps {
 const Articles = async ({ searchParams }: PageNumberProps) => {
     const { pageNumber } = searchParams;
     // use function  from the apicalls folder
-    const articlesData = await getArticles(pageNumber);
+    const articlesData: Article[] = await getArticles(pageNumber);
 
     // get the Article count
     const articlesCount = await getArticlesCount();
@@ -39,4 +40,4 @@ const Articles = async ({ searchParams }: PageNumberProps) => {
     )
 }
 
-export default Articles
+export default Articles 
