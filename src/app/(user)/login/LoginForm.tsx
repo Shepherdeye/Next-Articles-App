@@ -8,7 +8,8 @@ const LoginForm = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const submitHandler = (e: any) => {
+
+    const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         if (email === "") {
             toast.error("Email is required");

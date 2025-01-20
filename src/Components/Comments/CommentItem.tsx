@@ -1,36 +1,65 @@
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { RiEditBoxLine } from "react-icons/ri";
+import { MdDeleteOutline } from "react-icons/md";
+
 import adminImg from "../../../public/facebook-verified.png"
 import Image from 'next/image';
 const CommentItem = () => {
     return (
-        <div className='flex flex-col w-full  bg-gray-200 rounded border border-stone-900 shadow-lg  mb-4 p-2'>
-
-            <div className='flex w-full justify-between '>
-                <strong className=' flex text-gray-900 pl-1 text-1xl items-center font-bold'>Elsayed Mamdouh
-                    <span className='flex items-center text-blue-600 text-sm underline ml-1'>WS Admin <Image src={adminImg} width={20} height={20} alt="image admin" /></span></strong>
+        <div className="  shadow-lg flex flex-col w-full bg-white rounded-lg border border-gray-800 mb-6 p-4">
+            {/* Header Section */}
+            <div className="flex items-center justify-between mb-3">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center">
+                    Elsayed Mamdouh
+                    <span className="ml-2 text-sm text-blue-600 flex items-center underline">
+                        WS Admin
+                        <Image
+                            src={adminImg}
+                            width={18}
+                            height={18}
+                            alt="Admin Profile"
+                            className="ml-1"
+                        />
+                    </span>
+                </h2>
             </div>
-            <div className='pl-2 text-sm'>
-                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
-                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
-                يبدوان هذا المقال  يحتوي  علي  عدد كبير ن المعلومات التي  بدورها  ستكون مهمه في  تعلم هذا المجال شكرا لكم
 
-            </div>
-            <div className='flex justify-between items-center mt-2 '>
-                <div>
-                    <small style={{ fontSize: "11px", opacity: ".5" }} className=' ml-1 rounded-sm text-sm font-semibold'>2/1/2025</small>
+            {/* Content Section */}
+            <p
+                style={{ direction: "rtl" }}
+                className="text-sm text-gray-700 leading-relaxed  "
+            >
+                يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
+                في تعلم هذا المجال. شكراً لكم.              يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
+                في تعلم هذا المجال. شكراً لكم.              يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
+                في تعلم هذا المجال. شكراً لكم.              يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
+                في تعلم هذا المجال. شكراً لكم.
+            </p>
 
-                </div>
+            {/* Footer Section */}
+            <div className="flex items-center justify-between mt-4">
+                {/* Date */}
+                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                    2/1/2025
+                </span>
 
-                <div className='flex  items-center justify-end cursor-pointer'>
-                    <div className='p-1 text-yellow-500 '>
-                        <FaEdit />
-                    </div>
-                    <div className='p-1 text-red-500 '>
-                        <FaTrash />
-                    </div>
+                {/* Action Buttons */}
+                <div className="flex items-center space-x-2">
+                    <button
+                        className="p-1 text-black hover:text-yellow-600 transition-colors"
+                        title="Edit"
+                    >
+                        <RiEditBoxLine size={16} />
+                    </button>
+                    <button
+                        className="p-1 text-red-500 hover:text-red-600 transition-colors"
+                        title="Delete"
+                    >
+                        <MdDeleteOutline size={16} />
+                    </button>
                 </div>
             </div>
         </div>
+
     )
 }
 
