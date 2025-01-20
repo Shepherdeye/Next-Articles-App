@@ -10,8 +10,8 @@ import { ToastContainer, Zoom } from "react-toastify";
 // const noto_Kufi_Arabic = Noto_Kufi_Arabic({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: " EG Magazine",
-  description: "EG Magazine Full stack Using TS",
+  title: "Cloud App",
+  description: "Cloud App Full stack Using TS",
 }
 
 interface RootLayoutProps {
