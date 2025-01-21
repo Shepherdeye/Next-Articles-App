@@ -54,7 +54,7 @@ const CommentItem = () => {
                         className="p-1 text-red-500 hover:text-red-600 transition-colors"
                         title="Delete"
                     >
-                        <MdDeleteOutline size={16} />
+                        <MdDeleteOutline size={18} />
                     </button>
                 </div>
             </div>

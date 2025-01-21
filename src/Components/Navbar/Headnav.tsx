@@ -26,7 +26,7 @@ const Headnav = () => {
                     clipPath: toggle && "polygon(0 0, 100% 0, 100% 100%, 0 100%)" || ""
                 }}
             >
-                <ul className="nav_items">
+                <ul className="nav_items flex justify-start">
                     <Link onClick={() => setToggle(false)} href={"/"} className="nav_item ">Home</Link>
                     <Link onClick={() => setToggle(false)} href={"/about"} className="nav_item">About</Link>
                     <Link onClick={() => setToggle(false)} href={"/articles?pageNumber=1"} className="nav_item">Articles</Link>
