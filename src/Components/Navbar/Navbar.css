@@ -11,7 +11,7 @@
 }
 .nav-brand{
     display: flex;
-    width: 30%;
+    width: 20%;
     font-size:24px;
     justify-content: flex-start;
     align-items:center;
@@ -35,7 +35,7 @@
 
 }
 .resgestration_item_wrapper{
-    width:40%;
+    width:30%;
     display:flex;
     justify-content:flex-end;
     align-items:center;

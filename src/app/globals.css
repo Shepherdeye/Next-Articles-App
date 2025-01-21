@@ -18,3 +18,7 @@ min-height: calc(100vh - 115px);
 .overflow-height{
     height: calc(100vh - 115px);
 }
+
+button:disabled {
+    cursor: not-allowed;
+  }

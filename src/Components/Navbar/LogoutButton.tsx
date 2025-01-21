@@ -15,7 +15,7 @@ const LogoutButton = () => {
             router.push("/login");
             router.refresh();
         } catch (error: any) {
-            console.error(error.response.data.error);
+            console.error(error?.response?.data.message);
         }
     }
     return (

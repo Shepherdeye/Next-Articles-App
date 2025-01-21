@@ -32,7 +32,6 @@ async function NavBar() {
                             </div>
                             <LogoutButton />
 
-
                         </>) : (<>
                             <button >
                                 <Link href={"/login"}>Login</Link>

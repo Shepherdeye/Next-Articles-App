@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
+import ButtonSpinner from "@/Components/ButtonSpinner";
+
 
 const LoginForm = () => {
 
@@ -27,15 +29,15 @@ const LoginForm = () => {
         try {
 
             setLoading(true);
-
             await axios.post(`${DOMAIN}/api/user/login`, { email, password });
-            router.replace("/");
-            router.refresh();
+            router.replace('/');
             setLoading(false);
+            router.refresh();
 
         } catch (error: any) {
 
-            toast.warning(error.response.data.error)
+            toast.warning(error?.response?.data.message);
+            setLoading(false)
         }
 
 
@@ -56,10 +58,10 @@ const LoginForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     className='p-3 outline-none  mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
                     type="password" placeholder='Enter your password' />
-                <button
+                <button disabled={loading}
                     className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>
-                    Login
+                    {loading ? <ButtonSpinner /> : "Login"}
                 </button>
             </form>
         </>
