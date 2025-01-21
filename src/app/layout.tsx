@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-// Import the Inter font from Google Fonts
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 import NavBar from "@/Components/Navbar/Navbar";
 import "./globals.css";
@@ -10,8 +9,7 @@ import Footer from "@/components/Footer/Footer";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, Zoom } from "react-toastify";
 
-// Integrate Inter font with appropriate weights
-const interFont = Inter({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const poppinsFont = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
   title: "Cloud App",
@@ -24,7 +22,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={interFont.className}>
+    <html lang="en" className={poppinsFont.className}>
       <body
         style={{
           background: "#efefef"

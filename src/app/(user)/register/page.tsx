@@ -21,9 +21,7 @@ const RegisterPage = async () => {
         <section className='fix-height w-full flex flex-col items-center justify-center p-4'>
             {/* Page Title and Description */}
             <div className='text-center mb-4'>
-                <h1 className='text-3xl font-bold mb-2 font-sans text-gray-700'>
-                    Create Your Account
-                </h1>
+
 
             </div>
 

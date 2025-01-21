@@ -7,7 +7,7 @@ const CommentItem = () => {
     return (
         <div className="  shadow-lg flex flex-col w-full bg-white rounded-lg border border-gray-800 mb-6 p-4">
             {/* Header Section */}
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-1">
                 <h2 className="text-lg font-semibold text-gray-800 flex items-center">
                     Elsayed Mamdouh
                     <span className="ml-2 text-sm text-blue-600 flex items-center underline">
@@ -26,7 +26,7 @@ const CommentItem = () => {
             {/* Content Section */}
             <p
                 style={{ direction: "rtl" }}
-                className="text-sm text-gray-700 leading-relaxed  "
+                className="text-sm text-gray-700 leading-relaxed   "
             >
                 يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
                 في تعلم هذا المجال. شكراً لكم.              يبدو أن هذا المقال يحتوي على عدد كبير من المعلومات التي بدورها ستكون مهمة
@@ -36,7 +36,7 @@ const CommentItem = () => {
             </p>
 
             {/* Footer Section */}
-            <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center justify-between mt-1">
                 {/* Date */}
                 <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
                     2/1/2025
