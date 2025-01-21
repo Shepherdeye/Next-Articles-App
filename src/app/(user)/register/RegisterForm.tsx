@@ -1,18 +1,27 @@
 "use client"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { toast } from "react-toastify";
-
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { DOMAIN } from "@/utils/constants";
+import ButtonSpinner from "@/Components/ButtonSpinner";
 
 
 const RegisterForm = () => {
 
+
     const [email, setEmail] = useState("");
-    const [userName, setUserName] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const submitHandler = (e: any) => {
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+
+
+    const submitHandler = async (e: any) => {
         e.preventDefault();
-        if (userName === "") {
-            toast.error("userName is required");
+        if (name === "") {
+            toast.error("name is required");
             return;
         } else if (email == "") {
             toast.error("Email is required");
@@ -22,17 +31,31 @@ const RegisterForm = () => {
             toast.error("Password is required");
             return;
         }
-        console.log({
-            "userName": userName, "email": email, "password": password
-        });
+
+
+        try {
+
+            setLoading(true);
+            await axios.post(`${DOMAIN}/api/user/register`, { name, email, password });
+            router.replace('/');
+            setLoading(false);
+            router.refresh();
+
+        } catch (error: any) {
+
+            toast.warning(error?.response?.data.message);
+            setLoading(false)
+        }
+
+
     }
 
     return (
         <>
             <form onSubmit={submitHandler} className=' w-full  flex p-5 flex-col  items-center' >
                 <input
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
                     type="text" placeholder='Enter your user name' />
                 <input
@@ -50,7 +73,7 @@ const RegisterForm = () => {
                 <button
                     className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>
-                    Create Now
+                    {loading ? <ButtonSpinner /> : "Create Now"}
                 </button>
             </form>
         </>

@@ -1,17 +1,16 @@
 import "./Navbar.css"
 import { FaRegCircleUser } from "react-icons/fa6";
+import { FaUserCog } from "react-icons/fa";
 
 import Headnav from "./Headnav";
 import Link from 'next/link'
-
 import { verifyTokenForPages } from "@/utils/verfyJwt";
-import getToken from "@/getToken/getToken";
 import LogoutButton from "./LogoutButton";
-
+import { cookies } from "next/headers";
 
 async function NavBar() {
 
-    const token = await getToken()
+    const token = (await cookies()).get("jwtToken")?.value || "";
     const user = verifyTokenForPages(token)
 
 
@@ -23,11 +22,16 @@ async function NavBar() {
                     {
                         user ? (<>
                             <div className="mx-2 flex justify-content-end items-center">
-                                <FaRegCircleUser size={30} />
+
+
+                                {user.isAdmin ? (<>    <FaUserCog size={30} /></>) :
+                                    (<> <FaRegCircleUser size={30} /></>)}
+
                                 <Link href="/" >
-                                    <span style={{ textTransform: "capitalize" }} className='text-blue-700 font-bold md:text-xl mx-2'>
+                                    <span style={{ textTransform: "capitalize" }} className=' text-teal-700 font-bold md:text-xl mx-2'>
                                         {user?.name}
                                     </span>
+
                                 </Link>
                             </div>
                             <LogoutButton />

@@ -1,8 +1,22 @@
+
 import RegisterForm from "./RegisterForm"
 
 
+import { redirect } from "next/navigation";
+import { verifyTokenForPages } from "@/utils/verfyJwt";
+import { cookies } from "next/headers";
 
-const RegisterPage = () => {
+
+const RegisterPage = async () => {
+
+
+    // check  if the user exist to redirect to  home 
+    const token = (await cookies()).get("jwtToken")?.value || ""
+    const user = verifyTokenForPages(token);
+
+    user && redirect("/")
+
+
     return (
         <section className='fix-height w-full flex flex-col items-center justify-center p-4'>
             {/* Page Title and Description */}
