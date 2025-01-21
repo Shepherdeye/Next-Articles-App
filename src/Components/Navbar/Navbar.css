@@ -35,10 +35,11 @@
 
 }
 .resgestration_item_wrapper{
-    width:30%;
+    width:40%;
     display:flex;
     justify-content:flex-end;
     align-items:center;
+   
 
 }
 .resgestration_item_wrapper button{
