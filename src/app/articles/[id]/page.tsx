@@ -1,4 +1,3 @@
-
 import { getSingleArticle } from "@/apiCalls/ArticleApiCalls";
 import AddCommentForm from "@/Components/Comments/AddCommentForm";
 import CommentItem from "@/Components/Comments/CommentItem";

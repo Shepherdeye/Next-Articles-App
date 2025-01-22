@@ -19,7 +19,7 @@ const CommentItem = async ({ comment }: CommentForArticle) => {
     const user = verifyTokenForPages(token);
 
     return (
-        <div className="  shadow-sm flex flex-col w-full bg-white rounded-lg border-l border-gray-700 mb-6 p-4">
+        <div className="  flex flex-col w-full bg-white rounded-lg border-2 border-gray-700 mb-6 p-4">
             {/* Header Section */}
             <div className="flex items-center justify-between mb-1">
                 <h2 className="text-lg font-semibold  text-gray-800 flex items-center ">
