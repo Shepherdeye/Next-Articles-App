@@ -31,8 +31,12 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
                 <h4 className="font-bold ">Comments</h4>
             </div>
 
-            <CommentItem />
-            <CommentItem />
+            {
+                article.comments.map((comment) => (
+                    <CommentItem key={comment.id} comment={comment} />
+                ))
+            }
+
 
         </section>
     )
