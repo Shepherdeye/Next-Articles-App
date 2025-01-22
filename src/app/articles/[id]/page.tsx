@@ -3,6 +3,8 @@ import { getSingleArticle } from "@/apiCalls/ArticleApiCalls";
 import AddCommentForm from "@/Components/Comments/AddCommentForm";
 import CommentItem from "@/Components/Comments/CommentItem";
 import { SingleArticle } from "@/utils/types";
+import { verifyTokenForPages } from "@/utils/verfyJwt";
+import { cookies } from "next/headers";
 
 
 
@@ -12,6 +14,8 @@ interface SinglePageParam {
 }
 const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
+    const token = (await cookies()).get("jwtToken")?.value || "";
+    const user = verifyTokenForPages(token);
 
     const article: SingleArticle = await getSingleArticle(params.id);
 
@@ -26,7 +30,16 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
                 <p className="text-gray-800 text-xl mt-5">{article.description}</p>
 
             </div>
-            <AddCommentForm />
+
+            {
+                user ? <AddCommentForm articleId={parseInt(params.id)} /> : <>  <div className="my-4 text-center">
+                    <span className="text-gray-600 font-semibold text-sm hover:text-blue-500 cursor-pointer">
+                        Sign in to add comments
+                    </span>
+                </div></>
+            }
+
+
             <div className="my-5">
                 <h4 className="font-bold ">Comments</h4>
             </div>

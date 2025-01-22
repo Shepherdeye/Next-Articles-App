@@ -11,7 +11,7 @@ const RegisterPage = async () => {
 
 
     // check  if the user exist to redirect to  home 
-    const token = (await cookies()).get("jwtToken")?.value || ""
+    const token = (await cookies()).get("jwtToken")?.value || "";
     const user = verifyTokenForPages(token);
 
     user && redirect("/")
