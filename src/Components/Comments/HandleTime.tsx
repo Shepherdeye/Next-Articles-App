@@ -9,7 +9,7 @@ interface RelativeTimeProps {
 const RelativeTime: React.FC<RelativeTimeProps> = ({ comment }) => {
     if (!comment) return null;
 
-    const formattedTime = formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true });
+    const formattedTime = formatDistanceToNow(new Date(comment.updatedAt), { addSuffix: true });
 
     return <span>{formattedTime} </span>;
 };

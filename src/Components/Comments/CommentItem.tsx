@@ -7,7 +7,10 @@ import { CommentWithUSer } from "@/utils/types";
 import RelativeTime from "./HandleTime";
 import CommentUpdateItem from "./CommentUpdateItem";
 import { useState } from "react";
-
+import { toast } from "react-toastify"
+import axios from "axios";
+import { DOMAIN } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 interface CommentForArticle {
     comment: CommentWithUSer;
     userId: number | undefined
@@ -17,15 +20,33 @@ interface CommentForArticle {
 const CommentItem = ({ comment, userId }: CommentForArticle) => {
 
     const [open, setOpen] = useState(false);
+    const router = useRouter()
 
+    const handleDeleteComment = async () => {
+        try {
+            await axios.delete(`${DOMAIN}/api/comments/${comment.id}`);
+            router.refresh();
+
+        }
+        catch (error: any) {
+            // toast.error(error?.response?.data.message)
+            console.log(error?.response?.data.message)
+
+        }
+    }
     return (
-        <div className="  flex flex-col w-full bg-white rounded-lg border-2 border-gray-700 mb-6 p-4">
+        <div style={{
+            boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"
+        }}
+            className="  flex flex-col w-full bg-white rounded-lg mb-6 p-4">
 
             <div className="flex items-center justify-between mb-1">
                 <h2 className="text-lg font-semibold  text-gray-800 flex items-center ">
                     {comment.user.name}
                 </h2>
-
+                <span style={{ opacity: ".6", fontSize: "9px" }} className=" px-2 py-1 rounded ">
+                    <RelativeTime comment={comment} />
+                </span>
             </div>
 
 
@@ -38,27 +59,30 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
 
             <div className="flex items-center justify-end mt-1">
 
-                <span style={{ width: "90%", opacity: ".6", fontSize: "9px" }} className=" px-2 py-1 rounded ">
-                    <RelativeTime comment={comment} />
-                </span>
+
                 <div style={{ justifyContent: "end" }} className="flex justify-end space-x-2 w-full">
 
-                    {userId && userId == comment.userId && (<>
-                        <button
-                            className="p-1 text-black hover:text-yellow-600 transition-colors"
-                            title="Edit">
-                            <RiEditBoxLine size={16} onClick={() => setOpen(true)} />
-                        </button>
-                        <button
-                            className="p-1 text-red-500 hover:text-red-600 transition-colors"
-                            title="Delete">
-                            <MdDeleteOutline size={18} />
-                        </button></>
+                    {userId && userId === comment.userId && (
+                        <>
+                            <button
+                                className="p-1 text-black hover:text-yellow-600 transition-colors"
+                                title="Edit">
+                                <RiEditBoxLine size={16} onClick={() => setOpen(true)} />
+                            </button>
+                            <button
+                                className="p-1 text-red-500 hover:text-red-600 transition-colors"
+                                title="Delete">
+                                <MdDeleteOutline size={18} onClick={handleDeleteComment} />
+                            </button>
+                        </>
                     )}
                 </div>
             </div>
 
-            {open && (<CommentUpdateItem setOpen={setOpen} text={comment.text} commentId={comment.id} />)}
+            {open && (<CommentUpdateItem
+                setOpen={setOpen}
+                text={comment.text}
+                commentId={comment.id} />)}
 
 
         </div>
