@@ -45,7 +45,7 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
             {
                 article.comments.map((comment) => (
-                    <CommentItem key={comment.id} comment={comment} />
+                    <CommentItem key={comment.id} comment={comment} userId={user?.id} />
                 ))
             }
 
