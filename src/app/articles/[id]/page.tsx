@@ -20,13 +20,13 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
     return (
         <section className=" fix-height container m-auto w-full px-5 pt-8  md:w-3/4 ">
-            <div className="bg-white p-7 rounded-lg  ">
+            <div style={{ background: "#131720" }} className="p-7 text-white rounded-lg  ">
 
-                <h1 className="text-3xl font-bold text-gray-700 mb-2">{article.title}</h1>
-                <div className="text-gray-600 text-sm">
+                <h1 className="text-3xl font-bold text-white mb-2">{article.title}</h1>
+                <div className="text-white-600 text-sm">
                     {new Date(article.createdAt).toDateString()}
                 </div>
-                <p className="text-gray-800 text-xl mt-5">{article.description}</p>
+                <p className="text-white-800 text-xl mt-5">{article.description}</p>
 
             </div>
 

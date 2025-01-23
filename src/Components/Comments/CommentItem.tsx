@@ -7,7 +7,6 @@ import { CommentWithUSer } from "@/utils/types";
 import RelativeTime from "./HandleTime";
 import CommentUpdateItem from "./CommentUpdateItem";
 import { useState } from "react";
-import { toast } from "react-toastify"
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
 import { useRouter } from "next/navigation";
@@ -36,9 +35,9 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
     }
     return (
         <div style={{
-            boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"
+            boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 3px, rgba(0, 0, 0, 0.23) 0px 1px 3px"
         }}
-            className="  flex flex-col w-full bg-white rounded-lg mb-6 p-4">
+            className="  flex flex-col w-full bg-white rounded-lg mb-4 p-3">
 
             <div className="flex items-center justify-between mb-1">
                 <h2 className="text-lg font-semibold  text-gray-800 flex items-center ">
