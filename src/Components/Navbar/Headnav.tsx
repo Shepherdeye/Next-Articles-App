@@ -29,7 +29,11 @@ const Headnav = ({ isAdmin }: NavbarProps) => {
                     <AiOutlineMenu onClick={handleToggle} size={"30px"} />
                 )}
             </div>
-            <div className={`nav-items-wrapper ${toggle ? 'active' : ''}`}>
+            <div className={`nav-items-wrapper`}
+                style={
+                    { clipPath: toggle && "polygon(0 0, 100% 0, 100% 100%, 0 100%)" || "" }
+                }
+            >
                 <ul className="nav_items flex justify-start">
                     <li>
                         <Link href="/" onClick={handleToggle} className="nav_item">

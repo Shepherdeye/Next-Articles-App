@@ -59,6 +59,14 @@
     cursor:pointer;
 
 }
+/* .nav-items-wrapper {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: clip-path 0.3s ease-in-out;
+}
+
+.nav-items-wrapper.active {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+} */
 
 @media (max-width: 1080px) {
     .nav-brand {

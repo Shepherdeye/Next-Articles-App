@@ -49,7 +49,7 @@ const CommentUpdateItem = ({ setOpen, text, commentId }: updateCommentProps) => 
                     <input
                         type="text"
                         placeholder='Edit Comment...'
-                        className='text-xl rounded-lg p-2 w-full bg-white mb-2'
+                        className='text-sm rounded-lg p-2 w-full bg-white mb-2'
                         value={updatedText}
                         onChange={(e) => setUpdatedText(e.target.value)}
                     />

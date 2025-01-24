@@ -44,10 +44,10 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
             className="  flex flex-col w-full bg-white rounded-lg mb-4 p-3">
 
             <div className="flex items-center justify-between mb-1 p-1 bg-gray-800 rounded-md text-white">
-                <div className="flex justify-between items-center gap-1">
+                <div className="flex justify-between items-center ">
                     <FaRegCircleUser size={30} />
 
-                    <h2 className="text-lg ml-2 font-semibold  text-white flex items-center ">
+                    <h2 className="text-md ml-2 font-semibold  text-white flex items-center ">
 
 
                         {comment.user.name}

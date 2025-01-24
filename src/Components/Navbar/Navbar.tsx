@@ -22,8 +22,6 @@ async function NavBar() {
                     {
                         user ? (<>
                             <div className="mx-2 flex justify-content-end items-center">
-
-
                                 {user.isAdmin ? (<>
                                     <FaUserCog size={30} /></>) :
                                     (<> <FaRegCircleUser size={30} /></>)}
@@ -32,7 +30,6 @@ async function NavBar() {
                                     <span style={{ textTransform: "capitalize" }} className=' text-teal-700 font-bold md:text-xl mx-2'>
                                         {user?.name}
                                     </span>
-
                                 </Link>
                             </div>
                             <LogoutButton />
