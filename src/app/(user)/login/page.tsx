@@ -30,7 +30,6 @@ const LoginPage = async () => {
             {/* End Description */}
             <p className='text-gray-500 text-xs md:text-sm lg:text-base mt-4 text-center font-light px-4 md:px-0'>
                 By logging in, you agree to our <span className='text-blue-600 underline cursor-pointer'>Terms of Service</span> and <span className='text-blue-600 underline cursor-pointer'>Privacy Policy</span>
-                <br />. We prioritize your privacy and security to ensure your data is protected while you enjoy our services.
             </p>
         </section >
 

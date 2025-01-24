@@ -62,7 +62,7 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
 
             <p
                 style={{ direction: "rtl", textAlign: "left" }}
-                className="ml-2 my-2 text-sm text-gray-800 leading-relaxed " >
+                className="ml-2 my-2 text-sm text-gray-800 font-bold leading-relaxed " >
                 {comment.text}
             </p>
 

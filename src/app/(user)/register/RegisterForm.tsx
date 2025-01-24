@@ -13,6 +13,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -31,7 +32,10 @@ const RegisterForm = () => {
             toast.error("Password is required");
             return;
         }
-
+        else if (password !== confirmPassword) {
+            toast.error("Password not Matched");
+            return;
+        }
 
         try {
 
@@ -70,6 +74,12 @@ const RegisterForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     className='p-3 outline-none  mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
                     type="password" placeholder='Enter your password' />
+                <input
+
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className='p-3 outline-none  mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
+                    type="password" placeholder='Confirm password' />
                 <button
                     className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>

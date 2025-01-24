@@ -14,6 +14,7 @@ async function NavBar() {
     const user = verifyTokenForPages(token);
 
 
+
     return (
         <>
             <div className="nav_Container">
