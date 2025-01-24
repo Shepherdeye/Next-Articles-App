@@ -28,7 +28,7 @@ const Pagination = ({ pages, pageNumber, path }: PaginationProps) => {
 
             {paginationArray.map((page) => {
 
-                return <Link href={`${path}?pageNumber=${page}`} className={` ${pageNumber == page ? "bg-purple-700 text-white" : ""}  shadow-sm shadow-gray-800 text-gray-900 py-1 px-4 font-bold text-xl cursor-pointer hover:bg-purple-700 transition`} key={page}>
+                return <Link href={`${path}?pageNumber=${page}`} className={` ${pageNumber == page ? "bg-gray-700 text-white" : ""}  shadow-sm shadow-gray-800 text-gray-900 py-1 px-4 font-bold text-xl cursor-pointer  transition`} key={page}>
                     {page}
                 </Link>
             })}

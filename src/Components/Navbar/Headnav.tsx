@@ -1,44 +1,62 @@
-"use client"
+"use client";
 
-import Link from 'next/link'
-import React, { useState } from 'react'
+import Link from 'next/link';
+import React, { useState } from 'react';
 import { FiCoffee } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 
+interface NavbarProps {
+    isAdmin: boolean;
+}
 
-const Headnav = () => {
+const Headnav = ({ isAdmin }: NavbarProps) => {
+    const [toggle, setToggle] = useState(false);
 
-    const [toggle, setToggle] = useState(false)
+    const handleToggle = () => setToggle((prev) => !prev);
+
     return (
         <>
             <div className="nav-brand">
-                <Link style={{ display: "flex", alignItems: "center" }} className="navigator" href="/">FS
-
-                    <FiCoffee size={"30px"} />
-
-                    Clould </Link>
-
+                <Link href="/" className="navigator" style={{ display: "flex", alignItems: "center" }}>
+                    FS <FiCoffee size={"30px"} /> Cloud
+                </Link>
             </div>
             <div className="menu">
-                {toggle ? (<IoMdClose onClick={() => setToggle(prev => !prev)} size={"30px"} />) : (<AiOutlineMenu onClick={() => setToggle(prev => !prev)} size={"30px"} />)}
+                {toggle ? (
+                    <IoMdClose onClick={handleToggle} size={"30px"} />
+                ) : (
+                    <AiOutlineMenu onClick={handleToggle} size={"30px"} />
+                )}
             </div>
-            <div className='nav-items-wrapper'
-
-                style={{
-                    clipPath: toggle && "polygon(0 0, 100% 0, 100% 100%, 0 100%)" || ""
-                }}
-            >
+            <div className={`nav-items-wrapper ${toggle ? 'active' : ''}`}>
                 <ul className="nav_items flex justify-start">
-                    <Link onClick={() => setToggle(false)} href={"/"} className="nav_item ">Home</Link>
-                    <Link onClick={() => setToggle(false)} href={"/about"} className="nav_item">About</Link>
-                    <Link onClick={() => setToggle(false)} href={"/articles?pageNumber=1"} className="nav_item">Articles</Link>
-                    <Link onClick={() => setToggle(false)} href={"/admin"} className="nav_item">Admin</Link>
+                    <li>
+                        <Link href="/" onClick={handleToggle} className="nav_item">
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/about" onClick={handleToggle} className="nav_item">
+                            About
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/articles?pageNumber=1" onClick={handleToggle} className="nav_item">
+                            Articles
+                        </Link>
+                    </li>
+                    {isAdmin && (
+                        <li>
+                            <Link href="/admin" onClick={handleToggle} className="nav_item">
+                                Admin
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
-
         </>
-    )
-}
+    );
+};
 
-export default Headnav
+export default Headnav;

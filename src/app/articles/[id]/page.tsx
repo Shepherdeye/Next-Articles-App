@@ -4,6 +4,8 @@ import CommentItem from "@/Components/Comments/CommentItem";
 import { SingleArticle } from "@/utils/types";
 import { verifyTokenForPages } from "@/utils/verfyJwt";
 import { cookies } from "next/headers";
+import Link from 'next/link'
+
 
 
 
@@ -32,9 +34,9 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
             {
                 user ? <AddCommentForm articleId={parseInt(params.id)} /> : <>  <div className="my-4 text-center">
-                    <span className="text-gray-600 font-semibold text-sm hover:text-blue-500 cursor-pointer">
+                    <Link href={"/login"} className="text-gray-600 font-semibold text-sm hover:text-blue-500 cursor-pointer">
                         Sign in to add comments
-                    </span>
+                    </Link >
                 </div></>
             }
 

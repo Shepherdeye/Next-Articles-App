@@ -11,20 +11,21 @@ import { cookies } from "next/headers";
 async function NavBar() {
 
     const token = (await cookies()).get("jwtToken")?.value || "";
-    const user = verifyTokenForPages(token)
+    const user = verifyTokenForPages(token);
 
 
     return (
         <>
             <div className="nav_Container">
-                <Headnav />
+                <Headnav isAdmin={user?.isAdmin || false} />
                 <div className="resgestration_item_wrapper">
                     {
                         user ? (<>
                             <div className="mx-2 flex justify-content-end items-center">
 
 
-                                {user.isAdmin ? (<>    <FaUserCog size={30} /></>) :
+                                {user.isAdmin ? (<>
+                                    <FaUserCog size={30} /></>) :
                                     (<> <FaRegCircleUser size={30} /></>)}
 
                                 <Link href="/" >

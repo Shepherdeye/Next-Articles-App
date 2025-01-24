@@ -6,7 +6,7 @@ import { FaRegComments } from 'react-icons/fa';
 
 const AdminSlidebar = () => {
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col items-start ">
             <div>
                 <Link className="text-3xl font-bold p-2 flex items-center" href={"/admin"}>
                     <CgMenuGridR />
@@ -20,7 +20,7 @@ const AdminSlidebar = () => {
                 <Link className="flex items-center  text-xl mt-3 lg:border-b"
                     href={"/admin/articles-table"}>
                     <MdOutlineArticle />
-                    <span className="hidden lg:block ml-2 text-xl">
+                    <span className="hidden lg:block ml-2 text-lg">
                         Articles Table
                     </span>
                 </Link>
@@ -30,7 +30,7 @@ const AdminSlidebar = () => {
                     href={"/admin/comments-table"}>
                     <FaRegComments />
 
-                    <span className="hidden lg:block ml-2 text-xl ">
+                    <span className="hidden lg:block ml-2 text-lg ">
                         Comments Table
                     </span>
 
