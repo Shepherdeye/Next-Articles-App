@@ -20,7 +20,7 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
     return (
         <section className=" fix-height container m-auto w-full px-5 pt-8  md:w-3/4 ">
-            <div style={{ background: "#131720" }} className="p-7 text-white rounded-lg  ">
+            <div style={{ background: "rgb(23 44 90)" }} className="p-7 text-white rounded-lg  ">
 
                 <h1 className="text-3xl font-bold text-white mb-2">{article.title}</h1>
                 <div className="text-white-600 text-sm">

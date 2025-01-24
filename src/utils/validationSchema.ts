@@ -17,7 +17,7 @@ export const registerSchema = z.object({
     name: z.string({
         required_error: 'Name is required',
         invalid_type_error: "the value should be string"
-    }).min(2).max(100),
+    }).min(2).max(15, "only 15 charachter allowed in name"),
     email: z.string().min(5).max(100).email("invalid email"),
     password: z.string({
         required_error: 'Password is required',

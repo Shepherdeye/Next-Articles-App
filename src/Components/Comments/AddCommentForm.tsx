@@ -40,10 +40,9 @@ const AddCommentForm = ({ articleId }: commentProps) => {
         <>
             <form onSubmit={submitHandler} className=' w-full  flex mt-5 flex-col  items-start mb-8 rounded-lg' >
                 <input
-
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
+                    className='p-3   outline-none mb-2 w-full font-semibold text-gray-700 rounded-lg my-auto  border shadow-stone-900'
                     type="text" placeholder='Enter your comment' />
 
                 <button disabled={loading}

@@ -10,6 +10,8 @@ import { useState } from "react";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
 import { useRouter } from "next/navigation";
+import { FaRegCircleUser } from "react-icons/fa6";
+
 interface CommentForArticle {
     comment: CommentWithUSer;
     userId: number | undefined
@@ -40,9 +42,16 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
             className="  flex flex-col w-full bg-white rounded-lg mb-4 p-3">
 
             <div className="flex items-center justify-between mb-1">
-                <h2 className="text-lg font-semibold  text-gray-800 flex items-center ">
-                    {comment.user.name}
-                </h2>
+                <div className="flex justify-between items-center gap-2">
+                    <FaRegCircleUser size={30} />
+
+                    <h2 className="text-lg ml-2 font-semibold  text-gray-800 flex items-center ">
+
+
+                        {comment.user.name}
+
+                    </h2>
+                </div>
                 <span style={{ opacity: ".6", fontSize: "9px" }} className=" px-2 py-1 rounded ">
                     <RelativeTime comment={comment} />
                 </span>
@@ -51,7 +60,7 @@ const CommentItem = ({ comment, userId }: CommentForArticle) => {
 
             <p
                 style={{ direction: "rtl", textAlign: "left" }}
-                className=" text-sm text-gray-800 leading-relaxed " >
+                className="ml-2 my-2 text-sm text-gray-800 leading-relaxed " >
                 {comment.text}
             </p>
 
