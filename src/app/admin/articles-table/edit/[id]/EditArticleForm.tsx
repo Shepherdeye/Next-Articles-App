@@ -1,19 +1,22 @@
 "use client"
 import { DOMAIN } from "@/utils/constants";
+import { Article } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
 import { toast } from "react-toastify";
 
+interface EditArticleProps {
+    article: Article
+}
 
 
-const AddArticleForm = () => {
+const EditArticleForm = ({ article }: EditArticleProps) => {
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [loading, setLoading] = useState(false);
-
+    const [title, setTitle] = useState(article.title);
+    const [description, setDescription] = useState(article.description);
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
 
     const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -26,12 +29,11 @@ const AddArticleForm = () => {
         }
         try {
             setLoading(true);
-            await axios.post(`${DOMAIN}/api/articles`, { title, description });
-            setTitle("");
-            setDescription("");
+            await axios.put(`${DOMAIN}/api/articles/${article.id}`, { title, description });
             router.refresh();
-            toast.success("Article added successfully");
-            setLoading(false)
+            toast.success("Article Edit successfully");
+            setLoading(false);
+
 
         } catch (error: any) {
             toast.error(error?.response?.data.message)
@@ -45,23 +47,23 @@ const AddArticleForm = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
-                    type="text" placeholder='Enter your title' />
+                    type="text" />
                 <textarea
 
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     rows={10}
                     className='p-3 outline-none   mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
-                    placeholder='Enter your description' />
+                />
                 <button
                     disabled={loading}
-                    className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
+                    className='bg-green-700 hover:bg-green-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>
-                    {loading ? "Loading..." : "Add Article"}
+                    {loading ? "Loading..." : "Edit Article"}
                 </button>
             </form>
         </>
     )
 }
 
-export default AddArticleForm
+export default EditArticleForm

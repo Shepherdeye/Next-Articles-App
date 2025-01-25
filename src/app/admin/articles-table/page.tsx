@@ -60,7 +60,7 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
                                     <td className="px-1 py-2">
                                         <div className="flex flex-col space-y-2 md:flex-row md:items-end md:space-x-2">
                                             <button className=" p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
-                                                <Link href={"/admin"}>Edit</Link>
+                                                <Link href={`/admin/articles-table/edit/${article.id}`}>Edit</Link>
                                             </button>
                                             <DeleteArticleButon articleId={article.id} />
                                         </div>

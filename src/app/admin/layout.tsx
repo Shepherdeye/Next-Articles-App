@@ -5,8 +5,6 @@ interface AdminDashboardLayoutProps {
 }
 
 
-
-
 const AdminDashboardLayout = ({ children }: AdminDashboardLayoutProps) => {
     // throw new Error
     return (
