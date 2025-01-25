@@ -6,6 +6,8 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import DeleteArticleButon from "./DeleteArticleButon";
+import Pagination from "@/Components/Articles/Pagination";
+import { ARTICLE_PER_PAGE } from "@/utils/constants";
 
 interface ArticleTableProps {
     searchParams: { pageNumber: string }
@@ -19,44 +21,49 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
 
     const articles: Article[] = await getArticles(pageNumber);
 
+    const pagescount = await getArticlesCount()
+    const pages = Math.ceil(pagescount / ARTICLE_PER_PAGE);
+
+
 
 
 
     return (
 
-        <section className="flex flex-col w-full max-w-screen-xl mx-auto p-3 bg-gray-100">
-            <div className="overflow-x-auto bg-white shadow-md rounded-xl">
-                <h3 className="text-lg font-semibold text-gray-800 px-4 py-4 border-b">Articles</h3>
-                <div className="overflow-x-auto">
-                    <table className="w-full min-w-[640px] text-sm text-left text-gray-700">
-                        <thead className="bg-gray-200 text-gray-700 uppercase text-xs">
+        <section className="flex flex-col w-full max-w-screen-xl mx-3 bg-gray-100">
+            <div className="flex-1 bg-white shadow-md rounded-xl">
+                <h3 className="text-lg font-semibold text-gray-800 px-4 py-4 border-b">
+                    Articles
+                </h3>
+                <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
+                    <table className="w-full text-xs text-left text-gray-700">
+                        <thead className="bg-gray-200 text-gray-700 uppercase">
                             <tr>
-                                <th scope="col" className="px-4 py-3">Title</th>
-                                <th scope="col" className="px-4 py-3">Created At</th>
-                                <th scope="col" className="px-4 py-3">Action</th>
-                                <th scope="col" className="px-4 py-3">More Info</th>
+                                <th scope="col" className="px-2 py-2">ID</th>
+                                <th scope="col" className="px-2 py-2">Title</th>
+                                <th scope="col" className="px-2 py-2">Created At</th>
+                                <th scope="col" className="px-2 py-2">More Info</th>
+                                <th scope="col" className="px-2 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {articles.map((article) => (
                                 <tr key={article.id} className="border-b hover:bg-gray-50">
-                                    <td className="px-4 py-3 font-medium text-gray-900">{article.title}</td>
-                                    <td className="px-4 py-3">{new Date(article.updatedAt).toDateString()}</td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center space-x-2">
-                                            <button className="px-3 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                                    <td className="px-2 py-2 font-medium text-gray-900">{article.id}</td>
+                                    <td className="px-2 py-2 font-medium text-gray-900">{article.title}</td>
+                                    <td className="px-2 py-2">{new Date(article.updatedAt).toDateString()}</td>
+                                    <td className="px-2 py-2">
+                                        <Link href={`/articles/${article.id}`} className="text-blue-500 hover:underline">
+                                            Read More
+                                        </Link>
+                                    </td>
+                                    <td className="px-2 py-2">
+                                        <div className="flex flex-col space-y-2 md:flex-row md:items-center md:space-x-2">
+                                            <button className="px-2 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-700">
                                                 <Link href={"/admin"}>Edit</Link>
                                             </button>
                                             <DeleteArticleButon articleId={article.id} />
                                         </div>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <Link
-                                            href={`/articles/${article.id}`}
-                                            className="text-blue-500 "
-                                        >
-                                            Read More
-                                        </Link>
                                     </td>
                                 </tr>
                             ))}
@@ -64,9 +71,8 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
                     </table>
                 </div>
             </div>
+            <Pagination pages={pages} pageNumber={parseInt(pageNumber)} path="/admin/articles-table" />
         </section>
-
-
 
     )
 }
