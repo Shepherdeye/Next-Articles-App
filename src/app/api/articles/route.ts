@@ -21,6 +21,7 @@ export const GET = async (request: NextRequest) => {
         const articles = await prisma.article.findMany({
             skip: ARTICLE_PER_PAGE * ((parseInt(pageNumber)) - 1),
             take: ARTICLE_PER_PAGE,
+            orderBy: { updatedAt: "desc" }
         });
 
 
