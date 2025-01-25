@@ -18,7 +18,7 @@ const AdminSlidebar = () => {
             </div>
             <ul className="py-2 px-4 flex flex-col justify-around items-start h-1/2" >
                 <Link className="flex items-center  text-xl mt-3 lg:border-b"
-                    href={"/admin/articles-table"}>
+                    href={"/admin/articles-table?pageNumber=1"}>
                     <MdOutlineArticle />
                     <span className="hidden lg:block ml-2 text-lg">
                         Articles Table
