@@ -30,13 +30,13 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
 
     return (
 
-        <section className="flex flex-col w-full max-w-screen-xl mx-3 bg-gray-100">
-            <div className="flex-1 bg-white shadow-md rounded-xl">
+        <section className="flex flex-col w-full max-w-screen-xl mx-3 bg-gray-100 overflow-hidden">
+            <div className="flex-1 bg-white shadow-md rounded-xl" >
                 <h3 className="text-lg font-semibold text-gray-800 px-4 py-4 border-b">
                     Articles
                 </h3>
-                <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
-                    <table className="w-full text-xs text-left text-gray-700">
+                <div className="overflow-x-hidden max-h-[400px] overflow-y-auto p-3">
+                    <table className="w-full  text-xs lg:text-[18px] text-left text-gray-700">
                         <thead className="bg-gray-200 text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" className="px-2 py-2">ID</th>
@@ -49,17 +49,17 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
                         <tbody>
                             {articles.map((article) => (
                                 <tr key={article.id} className="border-b hover:bg-gray-50">
-                                    <td className="px-2 py-2 font-medium text-gray-900">{article.id}</td>
-                                    <td className="px-2 py-2 font-medium text-gray-900">{article.title}</td>
-                                    <td className="px-2 py-2">{new Date(article.updatedAt).toDateString()}</td>
-                                    <td className="px-2 py-2">
+                                    <td className="px-1 py-2 font-medium text-gray-900">{article.id}</td>
+                                    <td className="px-1 py-2 font-medium text-gray-900">{article.title}</td>
+                                    <td className="px-1 py-2">{new Date(article.updatedAt).toLocaleString()}</td>
+                                    <td className="px-1 py-2">
                                         <Link href={`/articles/${article.id}`} className="text-blue-500 hover:underline">
                                             Read More
                                         </Link>
                                     </td>
-                                    <td className="px-2 py-2">
-                                        <div className="flex flex-col space-y-2 md:flex-row md:items-center md:space-x-2">
-                                            <button className="px-2 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                                    <td className="px-1 py-2">
+                                        <div className="flex flex-col space-y-2 md:flex-row md:items-end md:space-x-2">
+                                            <button className=" p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
                                                 <Link href={"/admin"}>Edit</Link>
                                             </button>
                                             <DeleteArticleButon articleId={article.id} />

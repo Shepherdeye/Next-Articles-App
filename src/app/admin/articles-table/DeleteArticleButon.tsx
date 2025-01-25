@@ -29,7 +29,7 @@ const DeleteArticleButon = ({ articleId }: DeleteArticleProps) => {
     }
 
     return (
-        <button onClick={deleteHanddler} className="px-3 py-2 text-white bg-red-600 rounded-md hover:bg-red-700">
+        <button onClick={deleteHanddler} className="p-2 text-white bg-red-600 rounded-md hover:bg-red-700">
             Delete
         </button>
     )

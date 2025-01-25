@@ -14,7 +14,7 @@ const AdminDashboardLayout = ({ children }: AdminDashboardLayoutProps) => {
             <div className="lg:w-1/5 bg-gray-800  text-white flex flex-col pt-12">
                 <AdminSlidebar />
             </div>
-            <div className="w-full pl-3 pt-5 flex justify-center h-10/12" >
+            <div className="w-full pl-3 pt-5 flex justify-center h-10/12 overflow-hidden"  >
                 {children}
             </div>
         </div>
