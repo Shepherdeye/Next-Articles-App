@@ -6,8 +6,11 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import DeleteArticleButon from "./DeleteArticleButon";
+import { VscGoToFile } from "react-icons/vsc";
+
 import Pagination from "@/Components/Articles/Pagination";
 import { ARTICLE_PER_PAGE } from "@/utils/constants";
+import { RiEditBoxLine } from "react-icons/ri";
 
 interface ArticleTableProps {
     searchParams: { pageNumber: string }
@@ -35,8 +38,8 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
                 <h3 className="text-lg font-semibold text-gray-800 px-4 py-4 border-b">
                     Articles
                 </h3>
-                <div className="overflow-x-hidden max-h-[400px] overflow-y-auto p-3">
-                    <table className="w-full  text-xs lg:text-[18px] text-left text-gray-700">
+                <div className="overflow-x-hidden max-h-[400px] overflow-y-auto p-3 ">
+                    <table className="w-full  text-xs lg:text-[18px]  text-gray-700 text-center">
                         <thead className="bg-gray-200 text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" className="px-2 py-2">ID</th>
@@ -48,19 +51,23 @@ const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableP
                         </thead>
                         <tbody>
                             {articles.map((article) => (
-                                <tr key={article.id} className="border-b hover:bg-gray-50">
+                                <tr key={article.id} className="border-b hover:bg-gray-50 md:h-[55px]">
                                     <td className="px-1 py-2 font-medium text-gray-900">{article.id}</td>
                                     <td className="px-1 py-2 font-medium text-gray-900">{article.title}</td>
                                     <td className="px-1 py-2">{new Date(article.updatedAt).toLocaleString()}</td>
-                                    <td className="px-1 py-2">
-                                        <Link href={`/articles/${article.id}`} className="text-blue-500 hover:underline">
-                                            Read More
+                                    <td className="px-1 py-2 ">
+                                        <Link href={`/articles/${article.id}`} className="text-blue-500 hover:underline flex justify-center">
+                                            <VscGoToFile size={20} />
                                         </Link>
                                     </td>
                                     <td className="px-1 py-2">
-                                        <div className="flex flex-col space-y-2 md:flex-row md:items-end md:space-x-2">
-                                            <button className=" p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
-                                                <Link href={`/admin/articles-table/edit/${article.id}`}>Edit</Link>
+                                        <div className="flex items-center justify-center">
+                                            <button className="text-yellow-500 hover:text-yellow-700">
+                                                <Link href={`/admin/articles-table/edit/${article.id}`}>
+
+                                                    <RiEditBoxLine size={20} />
+
+                                                </Link>
                                             </button>
                                             <DeleteArticleButon articleId={article.id} />
                                         </div>

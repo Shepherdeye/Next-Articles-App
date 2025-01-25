@@ -4,6 +4,7 @@
 import { DOMAIN } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { MdDeleteOutline } from "react-icons/md";
 import { toast } from "react-toastify";
 
 interface DeleteArticleProps {
@@ -29,8 +30,8 @@ const DeleteArticleButon = ({ articleId }: DeleteArticleProps) => {
     }
 
     return (
-        <button onClick={deleteHanddler} className="p-2 text-white bg-red-600 rounded-md hover:bg-red-700">
-            Delete
+        <button onClick={deleteHanddler} className="text-red hover:text-red-700">
+            <MdDeleteOutline size={20} />
         </button>
     )
 }
