@@ -8,7 +8,6 @@ import { IoMdClose } from "react-icons/io";
 
 interface NavbarProps {
     isAdmin: boolean;
-
 }
 
 const Headnav = ({ isAdmin }: NavbarProps) => {

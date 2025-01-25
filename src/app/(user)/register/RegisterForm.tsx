@@ -59,6 +59,7 @@ const RegisterForm = () => {
             <form onSubmit={submitHandler} className=' w-full  flex p-5 flex-col  items-center' >
                 <input
                     value={name}
+                    maxLength={15}
                     onChange={(e) => setName(e.target.value)}
                     className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
                     type="text" placeholder='Enter your user name' />
