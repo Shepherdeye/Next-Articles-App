@@ -79,7 +79,9 @@ export async function GET(request: NextRequest) {
             )
         }
         //  get all comments from prisma db
-        const comments = await prisma.comment.findMany();
+        const comments = await prisma.comment.findMany({
+            orderBy: { updatedAt: "desc" }
+        });
 
         return NextResponse.json(
             comments,
