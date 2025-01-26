@@ -3,13 +3,12 @@ import { Article } from "@prisma/client"
 import EditArticleForm from "./EditArticleForm";
 
 interface EditArticlePageProps {
-    params: { id: string }
+    params: { id: string };
 }
 
 const EditArticlePage = async ({ params }: EditArticlePageProps) => {
 
-    // this function  return  type "Single article" that has comment 
-    // but we use Article type from prisma because  we  dont  need the comment .
+
 
     const article: Article = await getSingleArticle(params.id);
 

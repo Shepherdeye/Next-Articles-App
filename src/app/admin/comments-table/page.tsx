@@ -34,11 +34,11 @@ const AdminCommentsTable = async () => {
                             {comments.map((comment) => (
                                 <tr key={comment.id} className="hover:bg-gray-100">
                                     <td className="px-6 py-4 font-medium text-gray-900">
-                                        {comment.text.split(' ').slice(0, 4).join(' ') +
+                                        {comment.text.split(' ').slice(0, 10).join(' ') +
                                             (comment.text.split(' ').length > 4 ? '...' : '')}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {new Date(comment.updatedAt).toLocaleString()}
+                                        {comment.updatedAt ? new Date(comment.updatedAt).toLocaleString() : "invalid Date"}
                                     </td>
                                     <td className="px-6 py-4 text-center">
 
