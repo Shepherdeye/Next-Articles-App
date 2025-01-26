@@ -29,10 +29,12 @@ const AddCommentForm = ({ articleId }: commentProps) => {
             await axios.post(`${DOMAIN}/api/comments`, { text, articleId });
             router.refresh()
             setText("");
-            setLoading(false)
+            setLoading(false);
 
         } catch (error: any) {
-            toast.warning(error.response.data.message)
+            toast.warning(error.response.data.message);
+            setLoading(false);
+
         }
     }
 
