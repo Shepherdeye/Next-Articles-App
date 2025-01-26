@@ -10,15 +10,16 @@ import Link from 'next/link'
 
 
 interface SinglePageParam {
-    params: { id: string };
+    params: Promise<{ id: string }>
 
 }
 const SingleArticlePage = async ({ params }: SinglePageParam) => {
 
+    const articleId = (await params).id;
     const token = (await cookies()).get("jwtToken")?.value || "";
     const user = verifyTokenForPages(token);
 
-    const article: SingleArticle = await getSingleArticle(params.id);
+    const article: SingleArticle = await getSingleArticle(articleId);
 
     return (
         <section className=" fix-height container m-auto w-full px-5 pt-8  md:w-3/4 ">
@@ -33,7 +34,7 @@ const SingleArticlePage = async ({ params }: SinglePageParam) => {
             </div>
 
             {
-                user ? <AddCommentForm articleId={parseInt(params.id)} /> : <>  <div className="my-4 text-center">
+                user ? <AddCommentForm articleId={parseInt(articleId)} /> : <>  <div className="my-4 text-center">
                     <Link href={"/login"} className="text-gray-600 font-semibold text-sm hover:text-blue-500 cursor-pointer">
                         Sign in to add comments
                     </Link >

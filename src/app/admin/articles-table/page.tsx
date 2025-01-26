@@ -13,10 +13,11 @@ import { ARTICLE_PER_PAGE } from "@/utils/constants";
 import { RiEditBoxLine } from "react-icons/ri";
 
 interface ArticleTableProps {
-    searchParams: { pageNumber: string }
+    searchParams: Promise<{ pageNumber: string }>
 }
 
-const AdminArticleTable = async ({ searchParams: { pageNumber } }: ArticleTableProps) => {
+const AdminArticleTable = async ({ searchParams }: ArticleTableProps) => {
+    const pageNumber = (await searchParams).pageNumber;
     const token = (await cookies()).get("jwtToken")?.value || "";
     const user = verifyTokenForPages(token);
     if (!user) redirect("/");

@@ -11,6 +11,7 @@ interface EditArticleProps {
 }
 
 
+
 const EditArticleForm = ({ article }: EditArticleProps) => {
 
     const [title, setTitle] = useState(article.title);

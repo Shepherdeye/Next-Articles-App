@@ -5,7 +5,7 @@ import { verifyToken } from "@/utils/verfyJwt";
 import { NextRequest, NextResponse } from "next/server"
 
 interface props {
-    params: { id: string }
+    params: Promise<{ id: string }>;
 }
 
 
@@ -21,9 +21,10 @@ export async function PUT(request: NextRequest, { params }: props) {
 
     try {
 
+        const articleId = (await params).id;
 
         // define the comment 
-        const comment = await prisma.comment.findUnique({ where: { id: parseInt(params.id) } });
+        const comment = await prisma.comment.findUnique({ where: { id: parseInt(articleId) } });
         // check if find  the comment or not
         if (!comment) {
             return NextResponse.json(
@@ -59,7 +60,7 @@ export async function PUT(request: NextRequest, { params }: props) {
         // update the comment
         const updatedComment = await prisma.comment.update(
             {
-                where: { id: parseInt(params.id) },
+                where: { id: parseInt(articleId) },
                 data: {
                     text: body.text
                 }
@@ -91,9 +92,10 @@ export async function PUT(request: NextRequest, { params }: props) {
 
 export async function DELETE(request: NextRequest, { params }: props) {
     try {
+        const articleId = (await params).id;
 
         // define the comment 
-        const comment = await prisma.comment.findUnique({ where: { id: parseInt(params.id) } });
+        const comment = await prisma.comment.findUnique({ where: { id: parseInt(articleId) } });
         // check if find  the comment or not
         if (!comment) {
             return NextResponse.json(
@@ -114,7 +116,7 @@ export async function DELETE(request: NextRequest, { params }: props) {
         // check if the comment belong to the login user or not
         if (comment.userId === user.id || user.isAdmin == true) {
             // delete comment
-            await prisma.comment.delete({ where: { id: parseInt(params.id) } });
+            await prisma.comment.delete({ where: { id: parseInt(articleId) } });
             return NextResponse.json(
                 { message: "Comment Deleted Successfully" },
                 { status: 200 }

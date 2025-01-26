@@ -5,7 +5,7 @@ import { verifyToken } from "@/utils/verfyJwt";
 
 
 interface SingleArticleProps {
-    params: { id: string }
+    params: Promise<{ id: string }>;
 }
 
 
@@ -20,8 +20,9 @@ interface SingleArticleProps {
 export const GET = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
+        const articleId = (await params).id;
         const article = await prisma.article.findUnique({
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(articleId) },
             include: {
                 comments: {
                     include: {
@@ -59,6 +60,8 @@ export const GET = async (request: NextRequest, { params }: SingleArticleProps) 
 export const PUT = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
+        const articleId = (await params).id;
+
 
         // verfy first to know if the user was admin or not
         const user = verifyToken(request);
@@ -68,7 +71,7 @@ export const PUT = async (request: NextRequest, { params }: SingleArticleProps) 
                 { status: 403 }
             )
         }
-        const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } });
+        const article = await prisma.article.findUnique({ where: { id: parseInt(articleId) } });
 
         if (!article) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
@@ -77,7 +80,7 @@ export const PUT = async (request: NextRequest, { params }: SingleArticleProps) 
         const body = (await request.json()) as UpdateArticleDto;
 
         const updatedArticle = await prisma.article.update({
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(articleId) },
             data: {
                 title: body.title,
                 description: body.description
@@ -107,7 +110,7 @@ export const PUT = async (request: NextRequest, { params }: SingleArticleProps) 
 export const DELETE = async (request: NextRequest, { params }: SingleArticleProps) => {
 
     try {
-
+        const articleId = (await params).id;
         // verfy first to know if the user was admin or not
         const user = verifyToken(request);
         if (user == null || !user.isAdmin) {
@@ -118,7 +121,7 @@ export const DELETE = async (request: NextRequest, { params }: SingleArticleProp
         }
         // geting the article with the belongs comments
         const article = await prisma.article.findUnique({
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(articleId) },
             include: { comments: true }
 
         })
@@ -128,7 +131,7 @@ export const DELETE = async (request: NextRequest, { params }: SingleArticleProp
         }
 
         //request to delete
-        await prisma.article.delete({ where: { id: parseInt(params.id) } });
+        await prisma.article.delete({ where: { id: parseInt(articleId) } });
 
         // geting the articles ids to pass it to delete
         const commentIds: number[] = article?.comments.map((comment) => comment.id);

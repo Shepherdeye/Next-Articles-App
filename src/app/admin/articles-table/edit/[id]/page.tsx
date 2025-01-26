@@ -3,14 +3,14 @@ import { Article } from "@prisma/client"
 import EditArticleForm from "./EditArticleForm";
 
 interface EditArticlePageProps {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }
 
 const EditArticlePage = async ({ params }: EditArticlePageProps) => {
 
+    const articleId = (await params).id;
 
-
-    const article: Article = await getSingleArticle(params.id);
+    const article: Article = await getSingleArticle(articleId);
 
 
     return (

@@ -3,10 +3,11 @@ import { Article } from "@prisma/client"
 import ArticleItem from "../ArticleItem";
 
 interface SearchArticlePageProps {
-    searchParams: { searchText: string }
+    searchParams: Promise<{ searchText: string }>;
 }
 
-const SearchArticlePage = async ({ searchParams: { searchText } }: SearchArticlePageProps) => {
+const SearchArticlePage = async ({ searchParams }: SearchArticlePageProps) => {
+    const searchText = (await searchParams).searchText;
     const articles: Article[] = await searchForArticle(searchText);
     return (
         <div className="fix-height flex flex-col items-center px-2 ">

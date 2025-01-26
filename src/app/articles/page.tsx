@@ -7,14 +7,14 @@ import { ARTICLE_PER_PAGE } from '@/utils/constants';
 import { Article } from "@prisma/client"
 
 interface PageNumberProps {
-    searchParams: { pageNumber: string }
+    searchParams: Promise<{ pageNumber: string }>;
 }
 
 
 
 
 const Articles = async ({ searchParams }: PageNumberProps) => {
-    const { pageNumber } = searchParams;
+    const pageNumber = (await searchParams).pageNumber;
     // use function  from the apicalls folder
     const articlesData: Article[] = await getArticles(pageNumber);
 
