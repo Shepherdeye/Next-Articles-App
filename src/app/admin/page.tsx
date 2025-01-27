@@ -11,12 +11,10 @@ const AdminPage = async () => {
 
     return (
 
-        <div className=" w-full flex flex-col justify-center items-center ">
-            <div className="w-11/12 flex justify-start items-center">
-                <h2 className=" pl-4 font-bold text-lg md:text-2xl underline">Add New Article</h2>
-            </div>
+        <div className="w-full flex flex-col justify-start items-center">
             <AddArticleForm />
         </div>
+
 
     )
 }
