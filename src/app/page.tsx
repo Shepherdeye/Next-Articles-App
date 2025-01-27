@@ -7,9 +7,8 @@ export default function Home() {
       <Hero />
       <br />
       <br />
-
       <h2 className=" text-3xl font-bold text-center text-teal-900">
-        Choose Your Web Hosting Plan
+        Choose Your Web Publishing Plan
       </h2>
       <br />
       <br />

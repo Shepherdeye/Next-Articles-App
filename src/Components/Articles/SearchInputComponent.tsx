@@ -31,7 +31,7 @@ const SearchInputComponent = () => {
                 />
                 <button
                     type="submit"
-                    className="bg-purple-600 hover:bg-purple-700 text-black font-semibold px-6 py-3 rounded-r-lg transition-all"
+                    className=" hover:bg-purple-700 text-black font-semibold px-6 py-3 rounded-r-lg transition-all"
                 >
                     Search
                 </button>

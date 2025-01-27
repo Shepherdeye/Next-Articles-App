@@ -25,16 +25,18 @@ const Articles = async ({ searchParams }: PageNumberProps) => {
     const pagesCount = Math.ceil(articlesCount / ARTICLE_PER_PAGE);
 
     return (
-        <section className='fix-height container m-auto px-5 '>
+        <section className='fix-height container m-auto flex flex-col items-center px-5 '>
             <SearchInputComponent />
-            <div className="pt-5  w-full gap-7 flex flex-wrap justify-center mb-7">
-                {
-                    articlesData.map((item) => {
-                        return (
-                            <ArticleItem key={item.id} article={item} />
-                        )
-                    })
-                }
+            <div className='w-full mlimport-0 lg:ml-12 flex justify-center'>
+                <div className="pt-5   w-[95%] gap-5 flex flex-wrap justify-start mb-7">
+                    {
+                        articlesData.map((item) => {
+                            return (
+                                <ArticleItem key={item.id} article={item} />
+                            )
+                        })
+                    }
+                </div>
             </div>
             <Pagination pages={pagesCount} pageNumber={parseInt(pageNumber)} path="articles/" />
         </section>
