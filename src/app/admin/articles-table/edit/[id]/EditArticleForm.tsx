@@ -44,27 +44,38 @@ const EditArticleForm = ({ article }: EditArticleProps) => {
 
     return (
         <>
-            <form onSubmit={submitHandler} className='w-11/12 bg-gray-400 rounded-md mt-5 flex p-5 flex-col  items-center' >
+            <form
+                onSubmit={submitHandler}
+                className="w-11/12 bg-white rounded-xl shadow-lg mt-10 p-6 flex flex-col space-y-4"
+            >
+                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+                    Edit Your Article
+                </h2>
                 <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className='p-3  outline-none mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
-                    type="text" />
+                    className="p-3 w-full outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 transition-all text-gray-700"
+                    type="text"
+                    placeholder="Edit your title"
+                />
                 <textarea
-
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    rows={10}
-                    className='p-3 outline-none   mb-2 w-full font-semibold text-gray-700 rounded-sm my-auto  border shadow-stone-900'
+                    rows={6}
+                    className="p-3 w-full outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 transition-all text-gray-700 resize-none"
+                    placeholder="Edit your description"
                 />
                 <button
                     disabled={loading}
-                    className='bg-green-700 hover:bg-green-800 text-white p-4 rounded-lg w-full font-bold text-lg'
-                    type={'submit'}>
+                    className={`${loading ? "bg-gray-400" : "bg-green-700 hover:bg-green-800"
+                        } text-white font-semibold py-3 px-6 rounded-lg w-full transition-all text-lg`}
+                    type="submit"
+                >
                     {loading ? "Loading..." : "Edit Article"}
                 </button>
             </form>
         </>
+
     )
 }
 
