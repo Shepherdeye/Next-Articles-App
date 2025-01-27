@@ -17,17 +17,17 @@ export async function getArticles(pageNumber: string | undefined): Promise<Artic
 
 // get articles Count 
 
-export async function getArticlesCount(): Promise<number> {
-    const response = await fetch(`${DOMAIN}/api/articles/count`, {
-        cache: "no-store"
-    });
-    if (!response.ok) {
-        throw new Error('Failed to get articles count')
-    }
+// export async function getArticlesCount(): Promise<number> {
+//     const response = await fetch(`${DOMAIN}/api/articles/count`, {
+//         cache: "no-store"
+//     });
+//     if (!response.ok) {
+//         throw new Error('Failed to get articles count')
+//     }
 
-    const { count } = await response.json() as { count: number };
-    return count
-}
+//     const { count } = await response.json() as { count: number };
+//     return count
+// }
 
 // get articles depend on the searchText
 export async function searchForArticle(searchText: string): Promise<Article[]> {

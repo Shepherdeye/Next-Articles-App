@@ -1,5 +1,5 @@
 
-import { getArticles, getArticlesCount } from "@/apiCalls/ArticleApiCalls";
+import { getArticles } from "@/apiCalls/ArticleApiCalls";
 import { verifyTokenForPages } from "@/utils/verfyJwt";
 import { Article } from "@prisma/client";
 import { cookies } from "next/headers";
@@ -11,6 +11,7 @@ import { VscGoToFile } from "react-icons/vsc";
 import Pagination from "@/Components/Articles/Pagination";
 import { ARTICLE_PER_PAGE } from "@/utils/constants";
 import { RiEditBoxLine } from "react-icons/ri";
+import prisma from "@/utils/db";
 
 interface ArticleTableProps {
     searchParams: Promise<{ pageNumber: string }>
@@ -25,7 +26,7 @@ const AdminArticleTable = async ({ searchParams }: ArticleTableProps) => {
 
     const articles: Article[] = await getArticles(pageNumber);
 
-    const pagescount = await getArticlesCount()
+    const pagescount = await prisma.article.count();
     const pages = Math.ceil(pagescount / ARTICLE_PER_PAGE);
 
 
