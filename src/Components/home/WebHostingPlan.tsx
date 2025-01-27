@@ -2,41 +2,38 @@ import { TiTick } from 'react-icons/ti';
 
 const WebHostingPlan = () => {
     return (
-        <div className='flex flex-col items-center justify-center w-3/4 rounded p-4 bg-gray-200 mb-7 md:w-2/4 lg:w-1/4'>
-            <h3 className='text-3xl font-bold text-purple-900'>Premium</h3>
-            <strong className='text-3xl font-bold text-gray-900 my-5'>
-                $4.99/mo
-            </strong>
-            <span className='bg-red-200 text-red-900 rounded-full px-2 py-1 font-semibold'>
-                10% OFF
+        <div className="flex flex-col items-center justify-center w-3/4 rounded-xl p-6 bg-white shadow-lg mb-7 md:w-2/4 lg:w-1/4">
+            <h3 className="text-3xl font-bold text-blue-700">Pro Publisher</h3>
+            <strong className="text-4xl font-bold text-gray-800 my-5">$14.99/mo</strong>
+            <span className="bg-green-200 text-green-800 rounded-full px-3 py-1 font-semibold">
+                Save 20% with Annual Billing
             </span>
-            <div className='mt-6'>
-                <h5 className='text-2xl mb-1 font-semibold text-purple-700'>
-                    Top Features
-                </h5>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> 100 Website
+            <div className="mt-6">
+                <h5 className="text-xl mb-3 font-semibold text-blue-600">What’s Included</h5>
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> Publish Unlimited Articles
                 </div>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> 100 GB SSD Storage
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> Access to Premium Templates
                 </div>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> Weekly Backups
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> Advanced Analytics Dashboard
                 </div>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> Unlimited Bandwidth
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> Priority Support 24/7
                 </div>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> Free SLL
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> SEO Optimization Tools
                 </div>
-                <div className='flex items-center text-green-700 mb-1 ps-3'>
-                    <TiTick /> Free Email
+                <div className="flex items-center text-green-600 mb-2 ps-3">
+                    <TiTick className="mr-2" /> Custom Domain Integration
                 </div>
             </div>
-            <button className='mt-4 border-2 border-gray-900 text-gray-900 text-2xl font-bold p-1 rounded-full hover:text-white hover:bg-gray-900 transition w-full'>
-                BUY NOW
+            <button className="mt-5 bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-full hover:bg-blue-800 transition-all w-full">
+                UPGRADE NOW
             </button>
         </div>
+
     )
 }
 
