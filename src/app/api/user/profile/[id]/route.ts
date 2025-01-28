@@ -8,7 +8,7 @@ import { updateProfileSchema } from '@/utils/validationSchema';
 
 
 interface props {
-    params: { id: string }
+    params: Promise<{ id: string }>;
 }
 
 
@@ -21,10 +21,10 @@ interface props {
 
 export async function DELETE(request: NextRequest, { params }: props) {
     try {
-
+        const userId = (await params).id;
         // geting user from prisma db
         const user = await prisma.user.findUnique({
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(userId) },
             include: { comments: true }
         });
 
@@ -81,11 +81,12 @@ export async function DELETE(request: NextRequest, { params }: props) {
 
 export async function GET(request: NextRequest, { params }: props) {
     try {
+        const userId = (await params).id;
 
         // get user from Prisma DB
         const user = await prisma.user.findUnique({
 
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(userId) },
 
             select: {
                 id: true,
@@ -144,8 +145,10 @@ export async function GET(request: NextRequest, { params }: props) {
 
 export async function PUT(request: NextRequest, { params }: props) {
     try {
+        const userId = (await params).id;
+
         // get user from prisma DB
-        const user = await prisma.user.findUnique({ where: { id: parseInt(params.id) } });
+        const user = await prisma.user.findUnique({ where: { id: parseInt(userId) } });
         // check  if the user exist or not
         if (!user) {
             return NextResponse.json(
@@ -183,7 +186,7 @@ export async function PUT(request: NextRequest, { params }: props) {
 
         // now we need to add the new values of the user profile
         const updatedUser = await prisma.user.update({
-            where: { id: parseInt(params.id) },
+            where: { id: parseInt(userId) },
             data: {
                 name: body.name,
                 email: body.email,

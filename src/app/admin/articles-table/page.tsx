@@ -21,8 +21,9 @@ const AdminArticleTable = async ({ searchParams }: ArticleTableProps) => {
     const pageNumber = (await searchParams).pageNumber;
     const token = (await cookies()).get("jwtToken")?.value || "";
     const user = verifyTokenForPages(token);
-    if (!user) redirect("/");
-    if (user.isAdmin === false) redirect("/");
+    if (!user && user.isAdmin === false) {
+        return redirect("/");
+    }
 
     const articles: Article[] = await getArticles(pageNumber);
 
