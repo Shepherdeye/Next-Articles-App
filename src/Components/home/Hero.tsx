@@ -7,26 +7,27 @@ const Hero = () => {
     return (
         <div className={styles.hero}>
             <div className={styles.heroLeft}>
-                <h1 className={styles.title}>Cloud Hosting</h1>
+                <h1 className={styles.title}>Article Publisher</h1>
                 <p className={styles.desc}>
-                    The best web hosting solution for your online success
+                    The ultimate platform for sharing your stories and insights
                 </p>
                 <div className={styles.services}>
                     <div className={styles.serviceItem}>
-                        <TiTick />  Easy To Use Control Panel
+                        <TiTick /> User-Friendly Publishing Tools
                     </div>
                     <div className={styles.serviceItem}>
-                        <TiTick />  Secure Hosting
+                        <TiTick /> Secure Content Management
                     </div>
                     <div className={styles.serviceItem}>
-                        <TiTick />  Website Maintenance
+                        <TiTick /> Easy Collaboration with Teams
                     </div>
                 </div>
             </div>
             <div>
-                <Image src={CloudImage} alt='cloud' width={500} height={500} />
+                <Image src={CloudImage} alt='publishing' width={500} height={500} />
             </div>
         </div>
+
     )
 }
 
