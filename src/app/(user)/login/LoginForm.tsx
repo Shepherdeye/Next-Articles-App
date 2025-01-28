@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
-import ButtonSpinner from "@/Components/ButtonSpinner";
 
 
 const LoginForm = () => {
@@ -61,7 +60,7 @@ const LoginForm = () => {
                 <button disabled={loading}
                     className='bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg w-full font-bold text-lg'
                     type={'submit'}>
-                    {loading ? <ButtonSpinner /> : "Login"}
+                    {loading ? "Loading..." : "Login"}
                 </button>
             </form>
         </>

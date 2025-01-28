@@ -19,9 +19,9 @@ const Pagination = ({ pages, pageNumber, path }: PaginationProps) => {
 
 
     return (
-        <div className="flex items-center justify-center mt-2 mb-8">
+        <div style={{ marginBottom: "15px" }} className="flex items-center justify-center mt-2 mb-8">
             {
-                pageNumber !== 1 && (<Link href={`${path}?pageNumber=${prev}`} className="text-gray-900 m-1 py-1 px-3 font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
+                pageNumber !== 1 && (<Link style={{ marginRight: "8px" }} href={`${path}?pageNumber=${prev}`} className="text-gray-900 m-1 py-1 px-3 font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
                     <BsArrowLeftSquareFill />
                 </Link>)
             }
@@ -34,7 +34,7 @@ const Pagination = ({ pages, pageNumber, path }: PaginationProps) => {
             })}
             {
                 pageNumber !== pages && (
-                    <Link href={`${path}?pageNumber=${next}`} className=" text-gray-900 m-2 py-1 px- font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
+                    <Link style={{ marginLeft: "8px" }} href={`${path}?pageNumber=${next}`} className=" text-gray-900 m-2 py-1 px- font-bold text-3xl cursor-pointer hover:bg-gray-200 transition">
                         <BsArrowRightSquareFill />
                     </Link>
                 )

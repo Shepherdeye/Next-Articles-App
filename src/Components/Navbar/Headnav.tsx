@@ -19,7 +19,7 @@ const Headnav = ({ isAdmin }: NavbarProps) => {
         <>
             <div className="nav-brand">
                 <Link href="/" className="navigator" style={{ display: "flex", alignItems: "center" }}>
-                    FS <FiCoffee size={"30px"} /> Cloud
+                    <FiCoffee size={"30px"} />{" "} Publisher
                 </Link>
             </div>
             <div className="menu">
